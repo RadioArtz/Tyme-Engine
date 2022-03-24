@@ -23,7 +23,7 @@ namespace Tyme_Engine.Engine
             MainCamera.Rotation = new Vector3(0, 90, 0);
             GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
             GL.Enable(EnableCap.DepthTest);
-            var tmpmesh = IO.AssetImporter.GetMesh("C:/Users/mathi/Documents/Very low poly sphere.fbx");
+            var tmpmesh = IO.AssetImporter.GetMesh("C:/Users/mathi/Documents/cube.fbx");
             testThing = new Components.StaticMesh(tmpmesh,true,true);
         }
         #endregion
