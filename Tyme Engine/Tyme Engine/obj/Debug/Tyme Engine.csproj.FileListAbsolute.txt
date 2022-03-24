@@ -1,0 +1,28 @@
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\bin\Debug\Tyme Engine.exe.config
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\bin\Debug\Tyme Engine.exe
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\bin\Debug\Tyme Engine.pdb
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\bin\Debug\AssimpNet.dll
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\bin\Debug\OpenTK.dll
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\bin\Debug\AssimpNet.xml
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\bin\Debug\OpenTK.pdb
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\bin\Debug\OpenTK.xml
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\obj\Debug\Tyme Engine.csproj.AssemblyReference.cache
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\obj\Debug\Tyme Engine.csproj.CoreCompileInputs.cache
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\obj\Debug\Tyme Engine.csproj.CopyComplete
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\obj\Debug\Tyme Engine.exe
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\obj\Debug\Tyme Engine.pdb
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\bin\Debug\System.Buffers.dll
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\bin\Debug\System.Memory.dll
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\bin\Debug\System.Buffers.xml
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\bin\Debug\System.Memory.xml
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\bin\Debug\EngineContent\awesomeface.png
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\bin\Debug\EngineContent\container.jpg
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\bin\Debug\EngineContent\container2.png
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\bin\Debug\EngineContent\container2_specular.png
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\bin\Debug\EngineContent\wall.jpg
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\bin\Debug\EngineContent\Shaders\shader.frag
+C:\Users\mathi\source\repos\Tyme Engine\Tyme-Engine\Tyme Engine\Tyme Engine\bin\Debug\EngineContent\Shaders\shader.vert
