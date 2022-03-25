@@ -4,7 +4,6 @@ namespace Tyme_Engine.Components
     class TransformComponent : Component
     {
         public Transform componentTransform;
-
         public TransformComponent()
         {
         }

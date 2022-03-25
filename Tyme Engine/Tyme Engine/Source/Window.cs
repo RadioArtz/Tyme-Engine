@@ -20,9 +20,15 @@ namespace Tyme_Engine.Core
             base.OnLoad(e);
             GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
             GL.Enable(EnableCap.DepthTest);
-            GameObject test = new GameObject("fette komponentierung");
+
+            GameObject test = new GameObject("TestObject");
             test.AddComponent(new StaticMeshComponent(AssetImporter.LoadMeshSync("C:/Users/mathi/Documents/cube.fbx")));
             test.AddComponent(new TransformComponent());
+
+            foreach(GameObject obj in ObjectManager.GetAllObjects())
+            {
+                Debug.Log(obj.objectName);
+            }
         }
         #endregion
 

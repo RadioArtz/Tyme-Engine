@@ -10,6 +10,7 @@ namespace Tyme_Engine.Core
         public GameObject(string name)
         {
             objectName = name;
+            ObjectManager.AddObject(this);
         }
 
         public void AddComponent(Component componentToAdd)

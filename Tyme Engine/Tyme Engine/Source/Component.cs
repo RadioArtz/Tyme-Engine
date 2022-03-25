@@ -11,8 +11,6 @@ namespace Tyme_Engine.Components
         }
         public void OnComponentAttached(Tyme_Engine.Core.GameObject parentObject)
         {
-            Debug.Log("Component Created and attached to " + parentObject.objectName);
         }
     }
 }
-

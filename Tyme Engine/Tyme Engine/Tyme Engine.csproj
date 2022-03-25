@@ -69,6 +69,7 @@
     <Compile Include="Source\Components\TransformComponent.cs" />
     <Compile Include="Source\Debug.cs" />
     <Compile Include="Source\GameObject.cs" />
+    <Compile Include="Source\ObjectManager.cs" />
     <Compile Include="Source\Render3D.cs" />
     <Compile Include="Source\AssetImporter.cs" />
     <Compile Include="Source\Program.cs" />
