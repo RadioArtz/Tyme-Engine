@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using Tyme_Engine.Types;
 namespace Tyme_Engine.Components
 {
     class TransformComponent : Component
     {
+        public Transform componentTransform;
+
         public TransformComponent()
         {
         }

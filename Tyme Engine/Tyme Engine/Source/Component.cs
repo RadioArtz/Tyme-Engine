@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace Tyme_Engine.Components
 {
@@ -16,7 +11,7 @@ namespace Tyme_Engine.Components
         }
         public void OnComponentAttached(Tyme_Engine.Core.GameObject parentObject)
         {
-            Console.WriteLine("Component Created and attached to " + parentObject.objectName);
+            Debug.Log("Component Created and attached to " + parentObject.objectName);
         }
     }
 }

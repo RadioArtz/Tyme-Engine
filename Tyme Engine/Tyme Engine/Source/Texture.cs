@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System;
-using OpenTK.Graphics.OpenGL;
+﻿using OpenTK.Graphics.OpenGL;
 using System.Drawing;
 using System.Drawing.Imaging;
 

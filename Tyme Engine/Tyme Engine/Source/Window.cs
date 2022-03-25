@@ -3,7 +3,6 @@ using OpenTK.Input;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using System;
-using System.Collections.Generic;
 using Tyme_Engine.Components;
 using Tyme_Engine.IO;
 
@@ -23,6 +22,7 @@ namespace Tyme_Engine.Core
             GL.Enable(EnableCap.DepthTest);
             GameObject test = new GameObject("fette komponentierung");
             test.AddComponent(new StaticMeshComponent(AssetImporter.LoadMeshSync("C:/Users/mathi/Documents/cube.fbx")));
+            test.AddComponent(new TransformComponent());
         }
         #endregion
 
