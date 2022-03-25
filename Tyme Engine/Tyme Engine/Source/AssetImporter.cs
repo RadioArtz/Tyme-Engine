@@ -10,10 +10,10 @@ namespace Tyme_Engine.IO
     static class AssetImporter
 
     {
-        public static Mesh GetMesh(string path)
+        public static Mesh LoadMeshSync(string path)
         {
             var assimpContext = new AssimpContext();
-            var assimpScene = assimpContext.ImportFile(path, PostProcessSteps.GenerateNormals | PostProcessSteps.GenerateUVCoords | PostProcessSteps.Triangulate);
+            var assimpScene = assimpContext.ImportFile(path/*, PostProcessSteps.GenerateNormals | PostProcessSteps.GenerateUVCoords | PostProcessSteps.Triangulate*/);
             var assimpMesh = assimpScene.Meshes.First();
             return assimpMesh;
         }

@@ -9,12 +9,11 @@ namespace Tyme_Engine.Rendering
 {
     class Render3D
     {
-        public static void RenderStaticMeshes(List<Tyme_Engine.Components.StaticMesh> StaticMeshes, Camera cam)
+        public static void RenderStaticMeshes(List<Tyme_Engine.Components.StaticMeshComponent> StaticMeshes)
         {
 
-            foreach(Tyme_Engine.Components.StaticMesh sm in StaticMeshes)
+            foreach(Tyme_Engine.Components.StaticMeshComponent sm in StaticMeshes)
             {
-                sm.RenderMesh(cam.view);
             }
         }
     }
