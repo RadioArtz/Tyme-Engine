@@ -15,7 +15,7 @@ namespace Tyme_Engine.IO
             return assimpMesh;
         }
 
-        public static List<float> convertVertecies(Mesh inAssimpMesh)
+        public static List<float> ConvertVertecies(Mesh inAssimpMesh)
         {
             var tmplist = new List<float>();
             foreach(Vector3D v3d in inAssimpMesh.Vertices)

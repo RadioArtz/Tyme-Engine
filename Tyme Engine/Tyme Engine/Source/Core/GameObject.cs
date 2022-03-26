@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using Tyme_Engine.Components;
-
+using System;
 namespace Tyme_Engine.Core
 {
     class GameObject
@@ -22,11 +21,24 @@ namespace Tyme_Engine.Core
         public void RemoveComponent(Component componentToRemove)
         {
             childComponents.Remove(componentToRemove);
+            componentToRemove = null;
         }
 
         public void RemoveComponent(int indexToRemove)
         {
+            childComponents[indexToRemove] = null;
             childComponents.RemoveAt(indexToRemove);
         }
+
+        public void DestroyObject()
+        {
+            ObjectManager.DestroyObject(this);
+        }
+
+        public List<Component> GetComponents()
+        {
+            return childComponents;
+        }
+
     }
 }

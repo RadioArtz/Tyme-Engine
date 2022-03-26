@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Tyme_Engine.Core;
 
 namespace Tyme_Engine
@@ -19,16 +15,23 @@ namespace Tyme_Engine
         public static void RemoveObject(GameObject objectToRemove)
         {
             objectBuffer.Remove(objectToRemove);
+            
         }
 
         public static void RemoveObject(int indexToRemove)
         {
             objectBuffer.RemoveAt(indexToRemove);
+            objectBuffer[indexToRemove].DestroyObject();
         }
 
         public static List<GameObject> GetAllObjects()
         {
             return objectBuffer;
+        }
+
+        public static void DestroyObject(GameObject objectToDestroy)
+        {
+            objectToDestroy = null;
         }
     }
 }

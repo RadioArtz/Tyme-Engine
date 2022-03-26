@@ -22,16 +22,11 @@ namespace Tyme_Engine.Core
 
             GameObject test = new GameObject("TestObject");
             test.AddComponent(new StaticMeshComponent(AssetImporter.LoadMeshSync("C:/Users/mathi/Documents/cube.fbx")));
-            test.AddComponent(new TransformComponent());
-
-            foreach(GameObject obj in ObjectManager.GetAllObjects())
-            {
-                Debug.Log(obj.objectName);
-            }
+            
         }
         #endregion
 
-        #region PreRenderTick
+        #region LogicTick
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
         }
@@ -40,10 +35,12 @@ namespace Tyme_Engine.Core
         #region RenderTick
         protected override void OnRenderFrame(FrameEventArgs e)
         {
-            base.OnRenderFrame(e);
+            
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.Clear(ClearBufferMask.ColorBufferBit);
+            Tyme_Engine.Rendering.Render3D.RenderStaticMeshes();
             Context.SwapBuffers();
+            base.OnRenderFrame(e);
         }
         #endregion
 
@@ -58,9 +55,6 @@ namespace Tyme_Engine.Core
         #region UnloadWindow
         protected override void OnUnload(EventArgs e)
         {
-            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
-            GL.BindVertexArray(0);
-            GL.UseProgram(0);
             base.OnUnload(e);
         }
         #endregion
