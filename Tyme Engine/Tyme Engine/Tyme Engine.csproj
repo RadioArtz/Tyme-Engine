@@ -65,20 +65,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Source\Component.cs" />
+    <Compile Include="Source\Core\Component.cs" />
     <Compile Include="Source\Components\TransformComponent.cs" />
-    <Compile Include="Source\Debug.cs" />
-    <Compile Include="Source\GameObject.cs" />
+    <Compile Include="Source\Core\Debug.cs" />
+    <Compile Include="Source\Core\GameObject.cs" />
     <Compile Include="Source\ObjectManager.cs" />
     <Compile Include="Source\Render3D.cs" />
     <Compile Include="Source\AssetImporter.cs" />
-    <Compile Include="Source\Program.cs" />
+    <Compile Include="Source\Core\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\Shader.cs" />
     <Compile Include="Source\Components\StaticMeshComponent.cs" />
-    <Compile Include="Source\Structs\Transform.cs" />
+    <Compile Include="Source\Types\Transform.cs" />
     <Compile Include="Source\Texture.cs" />
-    <Compile Include="Source\Window.cs" />
+    <Compile Include="Source\Core\Window.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

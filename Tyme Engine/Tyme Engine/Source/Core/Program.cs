@@ -1,6 +1,5 @@
-﻿using Tyme_Engine.Core;
-
-namespace Tyme_Engine
+﻿
+namespace Tyme_Engine.Core
 {
     class Program
     {

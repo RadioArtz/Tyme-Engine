@@ -1,9 +1,4 @@
-﻿using OpenTK;
-using OpenTK.Input;
-using OpenTK.Graphics;
-using OpenTK.Graphics.OpenGL;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Tyme_Engine.Rendering
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Tyme_Engine.Components
+namespace Tyme_Engine.Core
 {
     class Component
     {
