@@ -40,5 +40,17 @@ namespace Tyme_Engine.Core
             return childComponents;
         }
 
+        public List<Components.StaticMeshComponent> GetStaticMeshComponents()
+        {
+            var statComps = new List<Components.StaticMeshComponent>();
+            foreach(Component comp in childComponents)
+            {
+                if(typeof(Components.StaticMeshComponent).IsInstanceOfType(comp))
+                {
+                    statComps.Add((Components.StaticMeshComponent)comp);
+                }
+            }
+            return statComps;
+        } 
     }
 }

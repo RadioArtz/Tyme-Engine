@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using System.Linq;
 namespace Tyme_Engine.Rendering
 {
     class Render3D
@@ -9,7 +9,7 @@ namespace Tyme_Engine.Rendering
         {
             foreach(Tyme_Engine.Core.GameObject obj in Tyme_Engine.ObjectManager.GetAllObjects())
             {
-                foreach(Tyme_Engine.Components.StaticMeshComponent statcomp in obj.GetComponents())
+                foreach(Tyme_Engine.Components.StaticMeshComponent statcomp in obj.GetStaticMeshComponents())
                 {
                     statcomp.RenderMesh();
                 }

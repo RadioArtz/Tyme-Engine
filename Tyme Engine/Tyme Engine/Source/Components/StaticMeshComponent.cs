@@ -15,19 +15,12 @@ namespace Tyme_Engine.Components
         int VertexBufferObject;
         int VertexArrayObject;
         private Shader meshShader;
-
-        float[] meshVerts = {
-    -0.5f, -0.5f, 0.0f, //Bottom-left vertex
-     0.5f, -0.5f, 0.0f, //Bottom-right vertex
-     0.0f,  0.5f, 0.0f }; //Top vertex
-                        //
+        //Matrix4 transMatrix = Matrix4.CreateTranslation()
 
         public StaticMeshComponent(Assimp.Mesh assimpMesh, bool bShouldRender, bool bShouldShadow)
         {
             ChangeMesh(assimpMesh);
             //TODO: later have the component request the mesh to be loaded or sent over by the Asset Manager. for now we just load the mesh externally and then send it to the component.
-            
-            
         }
 
         public StaticMeshComponent(Assimp.Mesh assimpMesh)
@@ -38,8 +31,8 @@ namespace Tyme_Engine.Components
         //this'll make more sense later after above TODO is implemented.
         public void ChangeMesh(Assimp.Mesh assimpMesh)
         {
-            //loadedMesh = assimpMesh;
-            //var meshVerts = AssetImporter.ConvertVertecies(assimpMesh).ToArray();
+            loadedMesh = assimpMesh;
+            var meshVerts = AssetImporter.ConvertVertecies(assimpMesh).ToArray();
             VertexBufferObject = GL.GenBuffer();
             GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject);
             GL.BufferData(BufferTarget.ArrayBuffer, meshVerts.Length * sizeof(float), meshVerts, BufferUsageHint.StaticDraw);
@@ -51,6 +44,11 @@ namespace Tyme_Engine.Components
 
             meshShader = new Shader(Path.Combine(Environment.CurrentDirectory, "EngineContent/Shaders/shader.vert"), Path.Combine(Environment.CurrentDirectory, "EngineContent/Shaders/shader.frag"));
             meshShader.Use();
+
+            foreach(Assimp.Vector3D vec in assimpMesh.Vertices)
+            {
+                Debug.Log(vec);
+            }
         }
 
         internal void RenderMesh()
@@ -62,7 +60,7 @@ namespace Tyme_Engine.Components
             }
             meshShader.Use();
             GL.BindVertexArray(VertexArrayObject);
-            GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
+            GL.DrawArrays(PrimitiveType.Triangles, 0, loadedMesh.Vertices.ToArray().Length);
         }
 
         public override void OnComponentDestroyed(EventArgs e)

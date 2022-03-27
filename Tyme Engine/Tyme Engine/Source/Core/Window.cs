@@ -4,7 +4,7 @@ using OpenTK.Graphics.OpenGL;
 using System;
 using Tyme_Engine.Components;
 using Tyme_Engine.IO;
-
+using System.Linq;
 namespace Tyme_Engine.Core
 {
     class EngineWindow : GameWindow
@@ -22,7 +22,7 @@ namespace Tyme_Engine.Core
 
             GameObject test = new GameObject("TestObject");
             test.AddComponent(new StaticMeshComponent(AssetImporter.LoadMeshSync("C:/Users/mathi/Documents/cube.fbx")));
-            
+            test.AddComponent(new TransformComponent());
         }
         #endregion
 
