@@ -1,22 +1,29 @@
 ﻿using System;
+using Tyme_Engine.Core;
 
 namespace Tyme_Engine.Core
 {
     class Component
     {
-        public Tyme_Engine.Core.GameObject ParentObject { get; }
+        internal GameObject _parentObject;
+        public GameObject parentObject { get => _parentObject; }
 
         public Component()
         {
         }
-        public virtual void OnComponentAttached(Tyme_Engine.Core.GameObject parentObject)
+        public virtual void OnComponentAttached(GameObject parentObject)
         {
 
         }
 
-        public virtual void OnComponentDestroyed(EventArgs e)
+        public virtual void OnComponentDestroyed()
         {
 
+        }
+
+        public GameObject GetParent()
+        {
+            return parentObject;
         }
     }
 }

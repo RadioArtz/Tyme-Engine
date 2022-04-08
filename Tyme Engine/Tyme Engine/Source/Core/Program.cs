@@ -7,7 +7,7 @@
             using (EngineWindow game = new EngineWindow(800, 800, "Tyme Engine"))
             {
                 game.Run(144);
-                game.VSync = OpenTK.VSyncMode.On;
+                game.VSync = OpenTK.VSyncMode.Adaptive;
             }
         }
     }

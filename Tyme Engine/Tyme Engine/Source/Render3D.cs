@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Tyme_Engine.Components;
+using Tyme_Engine.Core;
+
 namespace Tyme_Engine.Rendering
 {
     class Render3D
     {
-        
-        public static void RenderStaticMeshes()
+        public static void RenderStaticMeshes(float deltaTime)
         {
-            foreach(Tyme_Engine.Core.GameObject obj in Tyme_Engine.ObjectManager.GetAllObjects())
+            foreach(GameObject obj in ObjectManager.GetAllObjects())
             {
-                foreach(Tyme_Engine.Components.StaticMeshComponent statcomp in obj.GetStaticMeshComponents())
-                {
-                    statcomp.RenderMesh();
-                }
+                if(obj.staticMeshComponent != null)
+                    obj.staticMeshComponent.RenderMesh(deltaTime);
             }
         }
     }

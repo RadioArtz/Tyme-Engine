@@ -91,6 +91,7 @@
     <Compile Include="Source\Components\TransformComponent.cs" />
     <Compile Include="Source\Core\Debug.cs" />
     <Compile Include="Source\Core\GameObject.cs" />
+    <Compile Include="Source\Core\Helpers.cs" />
     <Compile Include="Source\ObjectManager.cs" />
     <Compile Include="Source\Render3D.cs" />
     <Compile Include="Source\AssetImporter.cs" />

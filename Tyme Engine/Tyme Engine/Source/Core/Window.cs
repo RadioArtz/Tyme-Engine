@@ -4,7 +4,8 @@ using OpenTK.Graphics.OpenGL;
 using System;
 using Tyme_Engine.Components;
 using Tyme_Engine.IO;
-using System.Linq;
+using Tyme_Engine.Rendering;
+
 namespace Tyme_Engine.Core
 {
     class EngineWindow : GameWindow
@@ -21,7 +22,7 @@ namespace Tyme_Engine.Core
             GL.Enable(EnableCap.DepthTest);
 
             GameObject test = new GameObject("TestObject");
-            test.AddComponent(new StaticMeshComponent(AssetImporter.LoadMeshSync("C:/Users/mathi/Documents/cube.fbx")));
+            test.AddComponent(new StaticMeshComponent(AssetImporter.LoadMeshSync("C:/Users/mathi/Documents/Cube.fbx")));
             test.AddComponent(new TransformComponent());
         }
         #endregion
@@ -35,11 +36,11 @@ namespace Tyme_Engine.Core
         #region RenderTick
         protected override void OnRenderFrame(FrameEventArgs e)
         {
-            
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.Clear(ClearBufferMask.ColorBufferBit);
-            Tyme_Engine.Rendering.Render3D.RenderStaticMeshes();
+            Render3D.RenderStaticMeshes(.01f);
             Context.SwapBuffers();
+            this.Title = ((int)this.RenderFrequency).ToString();
             base.OnRenderFrame(e);
         }
         #endregion
