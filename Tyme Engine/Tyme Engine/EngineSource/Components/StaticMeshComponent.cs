@@ -23,8 +23,8 @@ namespace Tyme_Engine.Components
         private Shader meshShader;
         
         private string meshPath;
-        //Matrix4 transMatrix = Matrix4.CreateTranslation()
 
+        //Matrix4 transMatrix = Matrix4.CreateTranslation()
         /*
         public StaticMeshComponent(Assimp.Mesh assimpMesh, bool bShouldRender, bool bShouldShadow)
         {
@@ -56,8 +56,9 @@ namespace Tyme_Engine.Components
 
             foreach(Assimp.Vector3D vec in assimpMesh.Vertices)
             {
-                //Debug.Log(vec);
+
             }
+
         }
 
         internal void RenderMesh(double deltaTime, Matrix4 projection)
@@ -79,7 +80,7 @@ namespace Tyme_Engine.Components
         {
             GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
             GL.DeleteBuffer(VertexBufferObject);
+            meshShader.Dispose();
         } 
-
     }
 }

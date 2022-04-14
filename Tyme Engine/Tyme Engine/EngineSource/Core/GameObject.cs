@@ -58,6 +58,7 @@ namespace Tyme_Engine.Core
             {
                 comp.OnComponentDestroyed();
             }*/
+            _staticMeshComponent?.OnComponentDestroyed();
             ObjectManager.DestroyObject(this);
         }
 

@@ -10,6 +10,6 @@ namespace Tyme_Engine.Core
     {
         public virtual void Start(){}
         public virtual void Update(float delta){}
-        public virtual void FixedUpdate(float delta){}
+        public virtual void PreRender(float delta){}
     }
 }

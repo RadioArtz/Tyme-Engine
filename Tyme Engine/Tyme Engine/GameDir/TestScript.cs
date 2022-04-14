@@ -13,7 +13,6 @@ namespace Tyme_Engine
 {
     class TestScript : UserScript
     {
-        private float deltatime;
         //private GameObject leepic;
         public override void Start()
         {
@@ -24,9 +23,11 @@ namespace Tyme_Engine
 
         public override void Update(float delta)
         {
-            deltatime = delta;
-            parentObject._transformComponent.transform.Rotation = new Vector3(45, parentObject._transformComponent.transform.Rotation.Y + deltatime* 128f, 75);
-            //Debug.Log("Update Time: " + deltatime);
+            parentObject._transformComponent.transform.Rotation = new Vector3(45, parentObject._transformComponent.transform.Rotation.Y + delta * 50f, 75);
+        }
+        public override void PreRender(float delta)
+        {
+            
         }
     }
 }
