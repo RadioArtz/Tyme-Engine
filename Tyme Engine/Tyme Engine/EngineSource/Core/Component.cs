@@ -3,6 +3,7 @@ using Tyme_Engine.Core;
 
 namespace Tyme_Engine.Core
 {
+    [Serializable]
     class Component
     {
         internal GameObject _parentObject;

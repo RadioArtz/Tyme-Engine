@@ -99,6 +99,7 @@
     <Reference Include="AssimpNet, Version=4.1.0.0, Culture=neutral, PublicKeyToken=0d51b391f59f42a6, processorArchitecture=MSIL">
       <HintPath>..\packages\AssimpNet.4.1.0\lib\net40\AssimpNet.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="OpenTK, Version=3.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenTK.3.1.0\lib\net20\OpenTK.dll</HintPath>
     </Reference>
@@ -126,11 +127,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EngineSource\Core\Camera.cs" />
     <Compile Include="EngineSource\Core\Component.cs" />
     <Compile Include="EngineSource\Components\TransformComponent.cs" />
     <Compile Include="EngineSource\Core\Debug.cs" />
     <Compile Include="EngineSource\Core\GameObject.cs" />
     <Compile Include="EngineSource\Core\Helpers.cs" />
+    <Compile Include="EngineSource\Core\Scene.cs" />
     <Compile Include="EngineSource\Core\UserScript.cs" />
     <Compile Include="EngineSource\ScriptManager.cs" />
     <Compile Include="EngineSource\ObjectManager.cs" />

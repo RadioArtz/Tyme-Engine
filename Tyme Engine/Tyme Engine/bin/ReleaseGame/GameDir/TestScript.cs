@@ -14,19 +14,19 @@ namespace Tyme_Engine
     class TestScript : UserScript
     {
         private float deltatime;
-        //private GameObject leepic;
+        private GameObject leepic;
         public override void Start()
         {
-            //leepic = new GameObject("TestObject");
-            //leepic.AddComponent(new StaticMeshComponent(AssetImporter.LoadMeshSync("C:/Users/mathi/Documents/Cube.fbx")));
-            //leepic.AddComponent(new TransformComponent());
+            leepic = new GameObject("TestObject");
+            leepic.AddComponent(new StaticMeshComponent(AssetImporter.LoadMeshSync("C:/Users/mathi/Documents/Cube.fbx")));
+            leepic.AddComponent(new TransformComponent());
         }
 
         public override void Tick(double delta)
         {
             deltatime = (float)delta;
-            parentObject._transformComponent.transform.Rotation = new Vector3(45, parentObject._transformComponent.transform.Rotation.Y + deltatime * 1250f, 75);
-            //Debug.Log("Update Time: " + deltatime);
+            leepic._transformComponent.transform.Rotation = new Vector3(45, leepic._transformComponent.transform.Rotation.Y + deltatime * 1250f, 75);
+            Debug.Log("Update Time: " + deltatime);
         }
     }
 }

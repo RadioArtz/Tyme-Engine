@@ -9,13 +9,20 @@ using OpenTK;
 
 namespace Tyme_Engine.Components
 {
+    [Serializable]
     class StaticMeshComponent : Component
     {
         //later replace this for a refference to the mesh in assetmanager
+        [NonSerialized]
         private Assimp.Mesh loadedMesh;
+        [NonSerialized]
         int VertexBufferObject;
+        [NonSerialized]
         int VertexArrayObject;
+        [NonSerialized]
         private Shader meshShader;
+        
+        private string meshPath;
         //Matrix4 transMatrix = Matrix4.CreateTranslation()
 
         /*
@@ -49,8 +56,7 @@ namespace Tyme_Engine.Components
 
             foreach(Assimp.Vector3D vec in assimpMesh.Vertices)
             {
-                Debug.Log(vec);
-
+                //Debug.Log(vec);
             }
         }
 
@@ -61,9 +67,8 @@ namespace Tyme_Engine.Components
                 Debug.Log("shader or Transform Component invalid");
                 return;
             }
-            parentObject._transformComponent.UpdateMatrecies();
-            meshShader.SetMatrix4("model", parentObject._transformComponent.model);
-            meshShader.SetMatrix4("view", parentObject._transformComponent.view);
+            meshShader.SetMatrix4("model", parentObject._transformComponent.GetModelMatrix());
+            meshShader.SetMatrix4("view", Matrix4.CreateTranslation(0.0f, 0.0f, -10.0f));
             meshShader.SetMatrix4("projection", projection);
             meshShader.Use();
             GL.BindVertexArray(VertexArrayObject);

@@ -20,17 +20,20 @@ namespace Tyme_Engine.Core
             base.OnLoad(e);
             GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
             GL.Enable(EnableCap.DepthTest);
-            
+            Scene testScene = new Scene();
             GameObject test0 = new GameObject("TestObject0");
+            //test0.AddComponent(new TestScript());
+            test0.AddComponent(new StaticMeshComponent(AssetImporter.LoadMeshSync("C:/Users/mathi/Documents/Cube.fbx")));
+            test0.AddComponent(new TransformComponent());
+            testScene.SaveScene();
             test0.AddComponent(new TestScript());
-
         }
         #endregion
 
         #region LogicTick
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
-            ScriptManager.TickScripts(UpdateTime);
+            ScriptManager.TickScripts(RenderTime);
         }
         #endregion
 
@@ -58,6 +61,10 @@ namespace Tyme_Engine.Core
         #region UnloadWindow
         protected override void OnUnload(EventArgs e)
         {
+            foreach(GameObject obj in ObjectManager.GetAllObjects())
+            {
+
+            }
             base.OnUnload(e);
         }
         #endregion

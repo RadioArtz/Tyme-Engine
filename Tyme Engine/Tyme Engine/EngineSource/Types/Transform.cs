@@ -1,7 +1,8 @@
 ﻿using OpenTK;
-
+using System;
 namespace Tyme_Engine.Types
 {
+    [Serializable]
     struct Transform
     {
         public Vector3 Location;

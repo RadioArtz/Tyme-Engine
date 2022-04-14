@@ -4,6 +4,7 @@ using Tyme_Engine.Components;
 
 namespace Tyme_Engine.Core
 {
+    [Serializable]
     class GameObject
     {
         public string objectName;
