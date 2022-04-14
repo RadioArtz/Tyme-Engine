@@ -5,7 +5,7 @@ namespace Tyme_Engine
 {
     static class ObjectManager
     {
-        public static List<GameObject> objectBuffer { get; private set; } = new List<GameObject>();
+        public static List<GameObject> objectBuffer { get;  set; } = new List<GameObject>();
 
         public static void AddObject(GameObject objectToAdd)
         {
@@ -15,7 +15,6 @@ namespace Tyme_Engine
         public static void RemoveObject(GameObject objectToRemove)
         {
             objectBuffer.Remove(objectToRemove);
-            
         }
 
         public static void RemoveObject(int indexToRemove)

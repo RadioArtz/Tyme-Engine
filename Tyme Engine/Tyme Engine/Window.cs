@@ -22,24 +22,26 @@ namespace Tyme_Engine.Core
             GL.Enable(EnableCap.DepthTest);
             Scene testScene = new Scene();
             GameObject test0 = new GameObject("TestObject0");
-            //test0.AddComponent(new TestScript());
             test0.AddComponent(new StaticMeshComponent(AssetImporter.LoadMeshSync("C:/Users/mathi/Documents/Cube.fbx")));
             test0.AddComponent(new TransformComponent());
-            testScene.SaveScene();
+            //testScene.SaveScene();
+
             test0.AddComponent(new TestScript());
+            //testScene.OpenScene();
         }
         #endregion
 
         #region LogicTick
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
-            ScriptManager.TickScripts(RenderTime);
+           //put fixed update here
         }
         #endregion
 
         #region RenderTick
         protected override void OnRenderFrame(FrameEventArgs e)
         {
+            ScriptManager.TickScripts(RenderTime);
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.Clear(ClearBufferMask.ColorBufferBit);
             Render3D.RenderStaticMeshes(RenderTime,projection);

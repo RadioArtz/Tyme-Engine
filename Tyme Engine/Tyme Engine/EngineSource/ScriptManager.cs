@@ -39,7 +39,7 @@ namespace Tyme_Engine
         {
             foreach(UserScript script in scriptBuffer)
             {
-                script.Tick(delta);
+                script.Tick((float)delta);
             }
         }
     }

@@ -39,7 +39,7 @@ namespace Tyme_Engine.Core
         {
             componentToRemove.OnComponentDestroyed();
             childComponents.Remove(componentToRemove);
-            componentToRemove = null;
+            //componentToRemove = null;
         }
 
         public void RemoveComponent(int indexToRemove)
@@ -51,6 +51,13 @@ namespace Tyme_Engine.Core
 
         public void DestroyObject()
         {
+            /*
+            this._transformComponent?.OnComponentDestroyed();
+            this._staticMeshComponent?.OnComponentDestroyed();
+            foreach (Component comp in this.childComponents)
+            {
+                comp.OnComponentDestroyed();
+            }*/
             ObjectManager.DestroyObject(this);
         }
 
