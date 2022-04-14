@@ -35,11 +35,18 @@ namespace Tyme_Engine
             objectToDestroy = null;
         }
         
-        public static void TickScripts(double delta)
+        public static void ScriptUpdate(float delta)
         {
             foreach(UserScript script in scriptBuffer)
             {
-                script.Tick((float)delta);
+                script.Update(delta);
+            }
+        }
+        public static void ScriptFixedUpdate(float delta)
+        {
+            foreach(UserScript script in scriptBuffer)
+            {
+                script.FixedUpdate(delta);
             }
         }
     }

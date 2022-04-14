@@ -34,14 +34,14 @@ namespace Tyme_Engine.Core
         #region LogicTick
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
-           //put fixed update here
+            ScriptManager.ScriptFixedUpdate((float)UpdateTime);
         }
         #endregion
 
         #region RenderTick
         protected override void OnRenderFrame(FrameEventArgs e)
         {
-            ScriptManager.TickScripts(RenderTime);
+            ScriptManager.ScriptUpdate((float)RenderTime);
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.Clear(ClearBufferMask.ColorBufferBit);
             Render3D.RenderStaticMeshes(RenderTime,projection);

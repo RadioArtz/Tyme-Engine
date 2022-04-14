@@ -9,6 +9,7 @@ namespace Tyme_Engine.Core
     class UserScript : Component
     {
         public virtual void Start(){}
-        public virtual void Tick(float delta){}
+        public virtual void Update(float delta){}
+        public virtual void FixedUpdate(float delta){}
     }
 }

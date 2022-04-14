@@ -22,7 +22,7 @@ namespace Tyme_Engine
             //leepic.AddComponent(new TransformComponent());
         }
 
-        public override void Tick(float delta)
+        public override void Update(float delta)
         {
             deltatime = delta;
             parentObject._transformComponent.transform.Rotation = new Vector3(45, parentObject._transformComponent.transform.Rotation.Y + deltatime* 128f, 75);
