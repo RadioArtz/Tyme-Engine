@@ -9,7 +9,7 @@ namespace Tyme_Engine.Rendering
 {
     public class Shader
     {
-        public readonly int Handle;
+        public int Handle { get; private set; }
         private readonly Dictionary<string, int> uniformLocations;
         private bool disposedValue = false;
 
@@ -96,14 +96,18 @@ namespace Tyme_Engine.Rendering
         {
             if (!disposedValue)
             {
+                if(Handle!=-1)
                 GL.DeleteProgram(Handle);
+                Handle = -1;
                 disposedValue = true;
             }
         }
 
         ~Shader()
         {
+            if(Handle!=-1)
             GL.DeleteProgram(Handle);
+            Handle = -1;
         }
 
         public int GetAttribLocation(string attribName)

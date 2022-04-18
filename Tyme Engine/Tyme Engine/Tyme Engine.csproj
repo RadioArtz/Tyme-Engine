@@ -138,7 +138,7 @@
     <Compile Include="EngineSource\Core\UserScript.cs" />
     <Compile Include="EngineSource\ScriptManager.cs" />
     <Compile Include="EngineSource\ObjectManager.cs" />
-    <Compile Include="EngineSource\Render3D.cs" />
+    <Compile Include="EngineSource\RenderInterface.cs" />
     <Compile Include="EngineSource\AssetImporter.cs" />
     <Compile Include="EngineSource\Core\Program.cs" />
     <Compile Include="GameDir\TestScript.cs" />

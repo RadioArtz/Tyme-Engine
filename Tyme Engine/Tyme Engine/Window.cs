@@ -14,8 +14,8 @@ namespace Tyme_Engine.Core
         public EngineWindow(int width, int height, string title) : base(width, height, GraphicsMode.Default, title)
         {
         }
-        private Matrix4 projection;
-        private Stopwatch deltaCalc = new Stopwatch();
+        private Matrix4 _projection;
+        private Stopwatch _deltaCalc = new Stopwatch();
         private float _deltatime = 0.0f;
 
         #region WindowLoaded
@@ -29,15 +29,15 @@ namespace Tyme_Engine.Core
             test0.AddComponent(new StaticMeshComponent(AssetImporter.LoadMeshSync("C:/Users/mathi/Documents/Cube.fbx")));
             test0.AddComponent(new TransformComponent());
             test0.AddComponent(new TestScript());
-            deltaCalc.Start();
+            _deltaCalc.Start();
         }
         #endregion
 
         #region LogicTick
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
-            _deltatime = (float)deltaCalc.Elapsed.TotalSeconds;
-            deltaCalc.Restart();
+            _deltatime = (float)_deltaCalc.Elapsed.TotalSeconds;
+            _deltaCalc.Restart();
             ScriptManager.ScriptUpdate((_deltatime));
         }
         #endregion
@@ -49,7 +49,7 @@ namespace Tyme_Engine.Core
 
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.Clear(ClearBufferMask.ColorBufferBit);
-            Render3D.RenderStaticMeshes(RenderTime,projection);
+            Render3D.RenderStaticMeshes(RenderTime,_projection);
             Context.SwapBuffers();
             Title = ((int)RenderFrequency).ToString();
             base.OnRenderFrame(e);
@@ -60,7 +60,7 @@ namespace Tyme_Engine.Core
         protected override void OnResize(EventArgs e)
         {
             GL.Viewport(0, 0, Width, Height);
-            projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(80.0f), (float)Width/Height, 0.01f, 100.0f);
+            _projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(80.0f), (float)Width/Height, 0.01f, 100.0f);
             base.OnResize(e);
         }
         #endregion

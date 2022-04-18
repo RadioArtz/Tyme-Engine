@@ -4,6 +4,8 @@ using System.IO;
 using Microsoft.VisualBasic;
 using System.Windows.Forms;
 
+//get rid of this shit
+
 namespace Tyme_Engine.Core
 {
     [Serializable]

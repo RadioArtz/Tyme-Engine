@@ -56,9 +56,7 @@ namespace Tyme_Engine.Components
 
             foreach(Assimp.Vector3D vec in assimpMesh.Vertices)
             {
-
             }
-
         }
 
         internal void RenderMesh(double deltaTime, Matrix4 projection)
