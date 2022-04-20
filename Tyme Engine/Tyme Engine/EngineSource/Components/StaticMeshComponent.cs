@@ -21,7 +21,11 @@ namespace Tyme_Engine.Components
         int VertexArrayObject;
         [NonSerialized]
         private Shader meshShader;
-        
+        [NonSerialized]
+        private int ElementBufferObject;
+        [NonSerialized]
+        private int indeciesCount;
+
         private string meshPath;
 
         //Matrix4 transMatrix = Matrix4.CreateTranslation()
@@ -42,14 +46,20 @@ namespace Tyme_Engine.Components
         {
             loadedMesh = assimpMesh;
             var meshVerts = AssetImporter.ConvertVertecies(assimpMesh).ToArray();
+            var meshIndecies = AssetImporter.ConvertIndecies(assimpMesh);
+            indeciesCount = meshIndecies.Length;
             VertexBufferObject = GL.GenBuffer();
             GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject);
             GL.BufferData(BufferTarget.ArrayBuffer, meshVerts.Length * sizeof(float), meshVerts, BufferUsageHint.StaticDraw);
-
+            
             VertexArrayObject = GL.GenVertexArray();
             GL.BindVertexArray(VertexArrayObject);
             GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
             GL.EnableVertexAttribArray(0);
+
+            ElementBufferObject = GL.GenBuffer();
+            GL.BindBuffer(BufferTarget.ElementArrayBuffer, ElementBufferObject);
+            GL.BufferData(BufferTarget.ElementArrayBuffer, indeciesCount * sizeof(uint), meshIndecies, BufferUsageHint.StaticDraw);
 
             meshShader = new Shader(Path.Combine(Environment.CurrentDirectory, "EngineContent/Shaders/shader.vert"), Path.Combine(Environment.CurrentDirectory, "EngineContent/Shaders/shader.frag"));
             meshShader.Use();
@@ -71,7 +81,8 @@ namespace Tyme_Engine.Components
             meshShader.SetMatrix4("projection", projection);
             meshShader.Use();
             GL.BindVertexArray(VertexArrayObject);
-            GL.DrawArrays(PrimitiveType.Triangles, 0, loadedMesh.Vertices.Count);
+            //GL.DrawArrays(PrimitiveType.Triangles, 0, loadedMesh.Vertices.Count);
+            GL.DrawElements(PrimitiveType.Triangles, indeciesCount, DrawElementsType.UnsignedInt, 0);
         }
 
         public override void OnComponentDestroyed()

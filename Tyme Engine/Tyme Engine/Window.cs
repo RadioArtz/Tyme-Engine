@@ -6,7 +6,7 @@ using Tyme_Engine.Components;
 using Tyme_Engine.IO;
 using Tyme_Engine.Rendering;
 using System.Diagnostics;
-
+using Microsoft.VisualBasic;
 namespace Tyme_Engine.Core
 {
     class EngineWindow : GameWindow
@@ -26,9 +26,12 @@ namespace Tyme_Engine.Core
             GL.Enable(EnableCap.DepthTest);
             Scene testScene = new Scene();
             GameObject test0 = new GameObject("TestObject0");
-            test0.AddComponent(new StaticMeshComponent(AssetImporter.LoadMeshSync("C:/Users/mathi/Documents/Cube.fbx")));
+            string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "C:/Users/mathi/Documents/wezz.obj");
+            test0.AddComponent(new StaticMeshComponent(AssetImporter.LoadMeshSync(input)));
             test0.AddComponent(new TransformComponent());
             test0.AddComponent(new TestScript());
+            //testScene.SaveScene();
+            //testScene.OpenScene();
             _deltaCalc.Start();
         }
         #endregion
