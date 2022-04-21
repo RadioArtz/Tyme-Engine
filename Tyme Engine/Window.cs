@@ -17,7 +17,7 @@ namespace Tyme_Engine.Core
         private Matrix4 _projection;
         private Stopwatch _deltaCalc = new Stopwatch();
         private float _deltatime = 0.0f;
-
+        
         #region WindowLoaded
         protected override void OnLoad(EventArgs e)
         {

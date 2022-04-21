@@ -6,7 +6,7 @@ using Tyme_Engine.Rendering;
 using System.IO;
 using OpenTK;
 using Microsoft.VisualBasic;
-
+using System.Diagnostics;
 namespace Tyme_Engine.Components
 {
     [Serializable]
@@ -19,8 +19,7 @@ namespace Tyme_Engine.Components
         int VertexBufferObject;
         [NonSerialized]
         int VertexArrayObject;
-        [NonSerialized]
-        private Shader meshShader;
+        public Shader meshShader { get; private set; }
         [NonSerialized]
         private int ElementBufferObject;
         [NonSerialized]
@@ -29,7 +28,7 @@ namespace Tyme_Engine.Components
         Texture texture1;
 
         private string meshPath;
-
+        
         //Matrix4 transMatrix = Matrix4.CreateTranslation()
         /*
         //more advanced import method to pass initial settings, might scrap this but will keep it for the moment.
@@ -78,7 +77,7 @@ namespace Tyme_Engine.Components
             texture1.Use(TextureUnit.Texture0);
 
             meshShader.SetInt("texture0", 0);
-            meshShader.SetVector4("tintColor", new Vector4(1, 1, 1, 1));
+            meshShader.SetVector4("tintColor", new Vector4(0.6f, 0.3f, 0.1f, 1));
             meshShader.Use();
         }
 
@@ -86,7 +85,7 @@ namespace Tyme_Engine.Components
         {
             if (meshShader == null | parentObject._transformComponent == null)
             {
-                Debug.Log("shader or Transform Component invalid");
+                //Debug.Log("shader or Transform Component invalid");
                 return;
             }
             meshShader.SetMatrix4("model", parentObject._transformComponent.GetModelMatrix());

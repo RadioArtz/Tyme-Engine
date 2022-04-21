@@ -182,11 +182,6 @@ namespace Tyme_Engine.Rendering
 
         public void SetVector4(string name, OpenTK.Vector4 data)
         {
-            foreach (string i in uniformLocations.Keys)
-            {
-                Tyme_Engine.Core.Debug.Log(i);
-            }
-
             GL.UseProgram(Handle);
             GL.Uniform4(uniformLocations[name], data);
         }
