@@ -22,7 +22,7 @@ namespace Tyme_Engine.Rendering
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMinFilter.Linear);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.DetailTextureModeSgis, (int)TextureParameterName.DetailTextureModeSgis);
-
+            GL.GenerateTextureMipmap(handle);
             source.Dispose();
 
             return t;

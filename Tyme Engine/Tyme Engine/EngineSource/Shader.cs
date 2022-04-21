@@ -176,8 +176,13 @@ namespace Tyme_Engine.Rendering
         /// <param name="data">The data to set</param>
         public void SetVector3(string name, OpenTK.Vector3 data)
         {
-            GL.UseProgram(Handle);
-            GL.Uniform3(uniformLocations[name], data);
+            foreach(string i in uniformLocations.Keys)
+            {
+                Tyme_Engine.Core.Debug.Log(i);
+            }
+            
+            //GL.UseProgram(Handle);
+            //GL.Uniform3(uniformLocations[name], data);
         }
         #endregion
     }

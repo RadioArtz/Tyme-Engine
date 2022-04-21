@@ -5,7 +5,7 @@ using Tyme_Engine.IO;
 using Tyme_Engine.Rendering;
 using System.IO;
 using OpenTK;
-
+using Microsoft.VisualBasic;
 
 namespace Tyme_Engine.Components
 {
@@ -25,11 +25,14 @@ namespace Tyme_Engine.Components
         private int ElementBufferObject;
         [NonSerialized]
         private int indeciesCount;
+        [NonSerialized]
+        Texture texture1;
 
         private string meshPath;
 
         //Matrix4 transMatrix = Matrix4.CreateTranslation()
         /*
+        //more advanced import method to pass initial settings, might scrap this but will keep it for the moment.
         public StaticMeshComponent(Assimp.Mesh assimpMesh, bool bShouldRender, bool bShouldShadow)
         {
             ChangeMesh(assimpMesh);
@@ -45,7 +48,7 @@ namespace Tyme_Engine.Components
         public void ChangeMesh(Assimp.Mesh assimpMesh)
         {
             loadedMesh = assimpMesh;
-            var meshVerts = AssetImporter.ConvertVertecies(assimpMesh).ToArray();
+            var meshVerts = AssetImporter.ConvertVertecies(assimpMesh,true,0);
             var meshIndecies = AssetImporter.ConvertIndecies(assimpMesh);
             indeciesCount = meshIndecies.Length;
             VertexBufferObject = GL.GenBuffer();
@@ -54,19 +57,29 @@ namespace Tyme_Engine.Components
             
             VertexArrayObject = GL.GenVertexArray();
             GL.BindVertexArray(VertexArrayObject);
-            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
-            GL.EnableVertexAttribArray(0);
+
+            meshShader = new Shader(Path.Combine(Environment.CurrentDirectory, "EngineContent/Shaders/shader.vert"), Path.Combine(Environment.CurrentDirectory, "EngineContent/Shaders/unlit.frag"));
+            meshShader.Use();
+
+            int vertPosLocation = meshShader.GetAttribLocation("aPos");
+            GL.VertexAttribPointer(vertPosLocation, 3, VertexAttribPointerType.Float, false, 5 * sizeof(float), 0);
+            GL.EnableVertexAttribArray(vertPosLocation);
+
+            int texCoordLocation = meshShader.GetAttribLocation("aTexCoord");
+            GL.VertexAttribPointer(texCoordLocation, 2, VertexAttribPointerType.Float, false, 5 * sizeof(float), 3 * sizeof(float));
+            GL.EnableVertexAttribArray(texCoordLocation);
 
             ElementBufferObject = GL.GenBuffer();
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, ElementBufferObject);
             GL.BufferData(BufferTarget.ElementArrayBuffer, indeciesCount * sizeof(uint), meshIndecies, BufferUsageHint.StaticDraw);
 
-            meshShader = new Shader(Path.Combine(Environment.CurrentDirectory, "EngineContent/Shaders/shader.vert"), Path.Combine(Environment.CurrentDirectory, "EngineContent/Shaders/shader.frag"));
-            meshShader.Use();
+            string input = Interaction.InputBox("Enter Texture file path", "Open Texture", "C:/Program Files (x86)/World Machine Basic/resources/grid.bmp");
+            texture1 = Texture.LoadFromFile(input);
+            texture1.Use(TextureUnit.Texture0);
 
-            foreach(Assimp.Vector3D vec in assimpMesh.Vertices)
-            {
-            }
+            meshShader.SetInt("texture0", 0);
+            meshShader.SetVector3("tintColor", new Vector3(1, 1, 1));
+            meshShader.Use();
         }
 
         internal void RenderMesh(double deltaTime, Matrix4 projection)
@@ -77,7 +90,7 @@ namespace Tyme_Engine.Components
                 return;
             }
             meshShader.SetMatrix4("model", parentObject._transformComponent.GetModelMatrix());
-            meshShader.SetMatrix4("view", Matrix4.CreateTranslation(0.0f, 0.0f, -10.0f));
+            meshShader.SetMatrix4("view", Matrix4.CreateTranslation(0.0f, 0.0f, -3.0f));
             meshShader.SetMatrix4("projection", projection);
             meshShader.Use();
             GL.BindVertexArray(VertexArrayObject);

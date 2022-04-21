@@ -26,7 +26,7 @@ namespace Tyme_Engine.Core
             GL.Enable(EnableCap.DepthTest);
             Scene testScene = new Scene();
             GameObject test0 = new GameObject("TestObject0");
-            string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "C:/Users/mathi/Documents/wezz.obj");
+            string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "C:/Users/mathi/Documents/Cube.fbx");
             test0.AddComponent(new StaticMeshComponent(AssetImporter.LoadMeshSync(input)));
             test0.AddComponent(new TransformComponent());
             test0.AddComponent(new TestScript());

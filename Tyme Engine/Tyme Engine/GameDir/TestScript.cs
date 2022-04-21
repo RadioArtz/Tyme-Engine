@@ -22,8 +22,8 @@ namespace Tyme_Engine
         }
 
         public override void Update(float delta)
-        {
-            parentObject._transformComponent.transform.Rotation = new Vector3(45, parentObject._transformComponent.transform.Rotation.Y + delta * 50f, 75);
+        { 
+            parentObject._transformComponent.transform.Rotation = new Vector3(45f, parentObject._transformComponent.transform.Rotation.Y + delta * 50f, 0f);
         }
         public override void PreRender(float delta)
         {

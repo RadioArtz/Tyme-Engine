@@ -151,7 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="EngineContent\Shaders\shader.frag">
+    <None Include="EngineContent\Shaders\unlit.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="EngineContent\Shaders\shader.vert">
