@@ -68,7 +68,7 @@ namespace Tyme_Engine.Rendering
             // Additional useful shit
             // First, we have to get the number of active uniforms in the shader.
             GL.GetProgram(Handle, GetProgramParameterName.ActiveUniforms, out var numberOfUniforms);
-
+            Core.Debug.Log(numberOfUniforms);
             // Next, allocate the dictionary to hold the locations.
             uniformLocations = new Dictionary<string, int>();
 
@@ -176,13 +176,19 @@ namespace Tyme_Engine.Rendering
         /// <param name="data">The data to set</param>
         public void SetVector3(string name, OpenTK.Vector3 data)
         {
-            foreach(string i in uniformLocations.Keys)
+            GL.UseProgram(Handle);
+            GL.Uniform3(uniformLocations[name], data);
+        }
+
+        public void SetVector4(string name, OpenTK.Vector4 data)
+        {
+            foreach (string i in uniformLocations.Keys)
             {
                 Tyme_Engine.Core.Debug.Log(i);
             }
-            
-            //GL.UseProgram(Handle);
-            //GL.Uniform3(uniformLocations[name], data);
+
+            GL.UseProgram(Handle);
+            GL.Uniform4(uniformLocations[name], data);
         }
         #endregion
     }

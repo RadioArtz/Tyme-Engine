@@ -78,7 +78,7 @@ namespace Tyme_Engine.Components
             texture1.Use(TextureUnit.Texture0);
 
             meshShader.SetInt("texture0", 0);
-            meshShader.SetVector3("tintColor", new Vector3(1, 1, 1));
+            meshShader.SetVector4("tintColor", new Vector4(1, 1, 1, 1));
             meshShader.Use();
         }
 
