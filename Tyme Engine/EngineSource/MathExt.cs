@@ -14,9 +14,8 @@ namespace Tyme_Engine.Core
         }
         public static float Lerp(float a, float b, float alpha)
         {
-            return (a + (b - a) * alpha);
+            return (a+(b-a)*alpha);
         }
-
         public static double Clamp01(double input)
         {
             if (input > 0 | input< 1) { return input; }

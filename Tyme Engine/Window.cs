@@ -7,6 +7,7 @@ using Tyme_Engine.IO;
 using Tyme_Engine.Rendering;
 using System.Diagnostics;
 using Microsoft.VisualBasic;
+using System.IO;
 
 namespace Tyme_Engine.Core
 {
@@ -26,11 +27,16 @@ namespace Tyme_Engine.Core
             GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
             GL.Enable(EnableCap.DepthTest);
             Scene testScene = new Scene();
-            GameObject test0 = new GameObject("TestObject0");
-            string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "C:/Users/mathi/Documents/Cube.fbx");
-            test0.AddComponent(new StaticMeshComponent(AssetImporter.LoadMeshSync(input)));
-            test0.AddComponent(new TransformComponent());
-            test0.AddComponent(new TestScript());
+            GameObject cube = new GameObject("TestObject0");
+            string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", Path.Combine(Environment.CurrentDirectory,"EngineContent/Meshes/cube.fbx"));
+            cube.AddComponent(new StaticMeshComponent(AssetImporter.LoadMeshSync(input)));
+            cube.AddComponent(new TransformComponent());
+            cube.AddComponent(new TestScript());
+
+            GameObject camera = new GameObject("MainCamera");
+            camera.AddComponent(new TransformComponent());
+            camera.AddComponent(new CameraComponent());
+            camera.AddComponent(new CameraZoomTest());
             //testScene.SaveScene();
             //testScene.OpenScene();
             _deltaCalc.Start();
@@ -43,11 +49,6 @@ namespace Tyme_Engine.Core
             _deltatime = (float)_deltaCalc.Elapsed.TotalSeconds;
             _deltaCalc.Restart();
             ScriptManager.ScriptUpdate((_deltatime));
-            OpenTK.Input.MouseState scroll = OpenTK.Input.Mouse.GetState();
-            foreach(GameObject obj in ObjectManager.objectBuffer)
-            {
-                obj._staticMeshComponent.scrollvalue = MathExt.Lerp(obj._staticMeshComponent.scrollvalue, scroll.WheelPrecise, MathExt.Clamp01(_deltatime * 16f));
-            }
         }
         #endregion
 
@@ -58,7 +59,7 @@ namespace Tyme_Engine.Core
 
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.Clear(ClearBufferMask.ColorBufferBit);
-            Render3D.RenderStaticMeshes(RenderTime,_projection);
+            RenderInterface.RenderStaticMeshes(RenderTime,_projection);
             Context.SwapBuffers();
             Title = ((int)RenderFrequency).ToString();
             base.OnRenderFrame(e);

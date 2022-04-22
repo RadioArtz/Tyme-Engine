@@ -14,8 +14,6 @@ namespace Tyme_Engine.Components
         public TransformComponent()
         {
             transform.Scale = new Vector3(1, 1, 1);
-            // Note that we're translating the scene in the reverse direction of where we want to move.
-            //projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(80.0f), 1.77777f, 0.01f, 100.0f);
         }
         public Matrix4 GetModelMatrix()
         {

@@ -1,19 +1,37 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Tyme_Engine.Components;
 using Tyme_Engine.Core;
 using OpenTK;
+
 namespace Tyme_Engine.Rendering
 {
-    class Render3D
+    class RenderInterface
     {
+        public static List<CameraComponent> _cameras { get; private set; } = new List<CameraComponent>();
+        public static CameraComponent _activeCamera { get; private set; }
+
         public static void RenderStaticMeshes(double delta, Matrix4 projection)
         {
+            _activeCamera.UpdateViewMatrix();
             foreach(GameObject obj in ObjectManager.GetAllObjects())
             {
                 if(obj._staticMeshComponent != null)
-                    obj._staticMeshComponent.RenderMesh(delta, projection);
+                    obj._staticMeshComponent.RenderMesh(delta, projection,_activeCamera.view);
             }
+        }
+
+        public static void AddCamera(CameraComponent cameraComponent)
+        {
+            _cameras.Add(cameraComponent);
+            if (_activeCamera == null | _cameras.Count<0)
+            {
+                _activeCamera = _cameras[0];
+            }
+        }
+
+        public static void SetActiveCamera(CameraComponent cameraComponent)
+        {
+            _activeCamera = cameraComponent;
         }
     }
 }

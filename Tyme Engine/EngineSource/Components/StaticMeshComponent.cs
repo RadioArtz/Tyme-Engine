@@ -7,6 +7,7 @@ using System.IO;
 using OpenTK;
 using Microsoft.VisualBasic;
 using System.Diagnostics;
+using System.IO;
 namespace Tyme_Engine.Components
 {
     [Serializable]
@@ -26,7 +27,6 @@ namespace Tyme_Engine.Components
         private int indeciesCount;
         [NonSerialized]
         Texture texture1;
-        public float scrollvalue = 0f;
         private string meshPath;
         
         //Matrix4 transMatrix = Matrix4.CreateTranslation()
@@ -72,7 +72,7 @@ namespace Tyme_Engine.Components
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, ElementBufferObject);
             GL.BufferData(BufferTarget.ElementArrayBuffer, indeciesCount * sizeof(uint), meshIndecies, BufferUsageHint.StaticDraw);
 
-            string input = Interaction.InputBox("Enter Texture file path", "Open Texture", "C:/Program Files (x86)/World Machine Basic/resources/grid.bmp");
+            string input = Interaction.InputBox("Enter Texture file path", "Open Texture", Path.Combine(Environment.CurrentDirectory, "EngineContent/Textures/kenney_prototypetextures_png/Dark/texture_03.png"));
             texture1 = Texture.LoadFromFile(input);
             texture1.Use(TextureUnit.Texture0);
 
@@ -81,7 +81,7 @@ namespace Tyme_Engine.Components
             meshShader.Use();
         }
 
-        internal void RenderMesh(double deltaTime, Matrix4 projection)
+        internal void RenderMesh(double deltaTime, Matrix4 projection, Matrix4 view)
         {
             if (meshShader == null | parentObject._transformComponent == null)
             {
@@ -89,7 +89,7 @@ namespace Tyme_Engine.Components
                 return;
             }
             meshShader.SetMatrix4("model", parentObject._transformComponent.GetModelMatrix());
-            meshShader.SetMatrix4("view", Matrix4.CreateTranslation(0.0f, 0.0f, scrollvalue));
+            meshShader.SetMatrix4("view", view);
             meshShader.SetMatrix4("projection", projection);
             meshShader.Use();
             GL.BindVertexArray(VertexArrayObject);
