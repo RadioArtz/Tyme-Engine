@@ -13,13 +13,13 @@ namespace Tyme_Engine
             scriptToAdd.Start();
         }
 
-        public static void RemoveObject(UserScript scriptToRemove)
+        public static void RemoveScript(UserScript scriptToRemove)
         {
             scriptBuffer.Remove(scriptToRemove);
             
         }
 
-        public static void RemoveObject(int indexToRemove)
+        public static void RemoveScript(int indexToRemove)
         {
             scriptBuffer.RemoveAt(indexToRemove);
             //scriptBuffer[indexToRemove].DestroyObject();
@@ -29,12 +29,12 @@ namespace Tyme_Engine
         {
             return scriptBuffer;
         }
-
-        public static void DestroyObject(GameObject objectToDestroy)
+        /*
+        public static void DestroyScript(UserScript scriptoDestroy)
         {
-            objectToDestroy = null;
-        }
-        
+            scriptoDestroy = null;
+        }*/
+
         public static void ScriptRender(float delta)
         {
             foreach(UserScript script in scriptBuffer)
