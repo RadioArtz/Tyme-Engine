@@ -136,6 +136,7 @@
     <Compile Include="EngineSource\Core\Helpers.cs" />
     <Compile Include="EngineSource\Core\Scene.cs" />
     <Compile Include="EngineSource\Core\UserScript.cs" />
+    <Compile Include="EngineSource\MathExt.cs" />
     <Compile Include="EngineSource\ScriptManager.cs" />
     <Compile Include="EngineSource\ObjectManager.cs" />
     <Compile Include="EngineSource\RenderInterface.cs" />

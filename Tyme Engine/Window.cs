@@ -7,6 +7,7 @@ using Tyme_Engine.IO;
 using Tyme_Engine.Rendering;
 using System.Diagnostics;
 using Microsoft.VisualBasic;
+
 namespace Tyme_Engine.Core
 {
     class EngineWindow : GameWindow
@@ -42,6 +43,11 @@ namespace Tyme_Engine.Core
             _deltatime = (float)_deltaCalc.Elapsed.TotalSeconds;
             _deltaCalc.Restart();
             ScriptManager.ScriptUpdate((_deltatime));
+            OpenTK.Input.MouseState scroll = OpenTK.Input.Mouse.GetState();
+            foreach(GameObject obj in ObjectManager.objectBuffer)
+            {
+                obj._staticMeshComponent.scrollvalue = MathExt.Lerp(obj._staticMeshComponent.scrollvalue, scroll.WheelPrecise, MathExt.Clamp01(_deltatime * 16f));
+            }
         }
         #endregion
 

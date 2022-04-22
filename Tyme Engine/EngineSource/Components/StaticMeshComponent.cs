@@ -26,7 +26,7 @@ namespace Tyme_Engine.Components
         private int indeciesCount;
         [NonSerialized]
         Texture texture1;
-
+        public float scrollvalue = 0f;
         private string meshPath;
         
         //Matrix4 transMatrix = Matrix4.CreateTranslation()
@@ -89,7 +89,7 @@ namespace Tyme_Engine.Components
                 return;
             }
             meshShader.SetMatrix4("model", parentObject._transformComponent.GetModelMatrix());
-            meshShader.SetMatrix4("view", Matrix4.CreateTranslation(0.0f, 0.0f, -3.0f));
+            meshShader.SetMatrix4("view", Matrix4.CreateTranslation(0.0f, 0.0f, scrollvalue));
             meshShader.SetMatrix4("projection", projection);
             meshShader.Use();
             GL.BindVertexArray(VertexArrayObject);
