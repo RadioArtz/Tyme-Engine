@@ -17,6 +17,8 @@ namespace Tyme_Engine.Core
         {
         }
         private Matrix4 _projection;
+        private Stopwatch _deltaCalc = new Stopwatch();
+        private float _deltatime = 0.0f;
         
         #region WindowLoaded
         protected override void OnLoad(EventArgs e)
@@ -37,28 +39,29 @@ namespace Tyme_Engine.Core
             camera.AddComponent(new CameraZoomTest());
             //testScene.SaveScene();
             //testScene.OpenScene();
+            _deltaCalc.Start();
         }
         #endregion
 
         #region LogicTick
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
-            ScriptManager.ScriptUpdate(((float)UpdatePeriod));
+            _deltatime = (float)_deltaCalc.Elapsed.TotalSeconds;
+            _deltaCalc.Restart();
+            ScriptManager.ScriptUpdate((_deltatime));
         }
         #endregion
 
         #region RenderTick
         protected override void OnRenderFrame(FrameEventArgs e)
         {
-            ScriptManager.ScriptRender((float)UpdatePeriod);
+            ScriptManager.ScriptRender(_deltatime);
 
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.Clear(ClearBufferMask.ColorBufferBit);
             RenderInterface.RenderStaticMeshes(RenderTime,_projection);
             Context.SwapBuffers();
-            //Title = (Math.Round(1 / _deltatime)).ToString();
-            //Debug.Log("fps: " + (Math.Round(1 / _deltatime)).ToString() + " deltatime: " + _deltatime.ToString());
-            Title = (1/UpdatePeriod).ToString();
+            Title = ((int)RenderFrequency).ToString();
             base.OnRenderFrame(e);
         }
         #endregion

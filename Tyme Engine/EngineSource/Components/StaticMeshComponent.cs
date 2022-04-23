@@ -6,7 +6,8 @@ using Tyme_Engine.Rendering;
 using System.IO;
 using OpenTK;
 using Microsoft.VisualBasic;
-
+using System.Diagnostics;
+using System.IO;
 namespace Tyme_Engine.Components
 {
     [Serializable]
