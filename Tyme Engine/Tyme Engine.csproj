@@ -142,6 +142,7 @@
     <Compile Include="EngineSource\RenderInterface.cs" />
     <Compile Include="EngineSource\AssetImporter.cs" />
     <Compile Include="EngineSource\Core\Program.cs" />
+    <Compile Include="EngineSource\Types\RuntimeStaticMesh.cs" />
     <Compile Include="GameDir\CameraZoomTest.cs" />
     <Compile Include="GameDir\TestScript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

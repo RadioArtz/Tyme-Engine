@@ -18,24 +18,23 @@ namespace Tyme_Engine.Core
         }
         public static double Clamp01(double input)
         {
-            if (input > 0 | input< 1) { return input; }
-            else if (input > 1) { return 1; }
+            if (input > 1) { return 1; }
             else if (input < 0) { return 0; }
-            return -1;
+            return input;
         }
         public static float Clamp01(float input)
         {
-            if (input > 0 | input < 1) { return input; }
-            else if (input > 1) { return 1; }
+            if (input > 1) { return 1; }
             else if (input < 0) { return 0; }
-            return -1;
+            return input;
         }
         public static int Clamp01(int input)
         {
-            if (input > 0 | input < 1) { return input; }
-            else if (input > 1) { return 1; }
+            if (input > 1) { return 1; }
             else if (input < 0) { return 0; }
-            return -1;
+            return input;
         }
+        public static T Clamp01
+            
     }
 }

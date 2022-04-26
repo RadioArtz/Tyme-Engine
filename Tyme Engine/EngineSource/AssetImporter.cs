@@ -7,12 +7,12 @@ namespace Tyme_Engine.IO
     static class AssetImporter
 
     {
-        public static Mesh LoadMeshSync(string path)
+        public static Assimp.Scene LoadMeshSync(string path)
         {
             var assimpContext = new AssimpContext();
             var assimpScene = assimpContext.ImportFile(path, PostProcessSteps.GenerateNormals | PostProcessSteps.GenerateUVCoords | PostProcessSteps.Triangulate);
-            var assimpMesh = assimpScene.Meshes.First();
-            return assimpMesh;
+            //var assimpMesh = assimpScene.Meshes.First();
+            return assimpScene;
         }
 
         public static float[] ConvertVertecies(Mesh inAssimpMesh,bool b_IncludeTexCoords, int uvChannel)
