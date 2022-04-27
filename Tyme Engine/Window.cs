@@ -28,15 +28,20 @@ namespace Tyme_Engine.Core
             GL.Enable(EnableCap.DepthTest);
             Scene testScene = new Scene();
             GameObject cube = new GameObject("TestObject0");
-            string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", Path.Combine(Environment.CurrentDirectory,"EngineContent/Meshes/cube.fbx"));
-            cube.AddComponent(new StaticMeshComponent(AssetImporter.LoadMeshSync(input)));
-            cube.AddComponent(new TransformComponent());
-            cube.AddComponent(new TestScript());
-
+            string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "A:/Sponza/Main/NewSponza_Main_FBX_YUp.fbx");
+            //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", Path.Combine(Environment.CurrentDirectory,"EngineContent/Meshes/cube.fbx"));
+            
             GameObject camera = new GameObject("MainCamera");
             camera.AddComponent(new TransformComponent());
             camera.AddComponent(new CameraComponent());
             camera.AddComponent(new CameraZoomTest());
+            camera.AddComponent(new PointLampComponent());
+
+            cube.AddComponent(new StaticMeshComponent(AssetImporter.LoadMeshSync(input)));
+            cube.AddComponent(new TransformComponent());
+            cube.AddComponent(new TestScript());
+
+            
             //testScene.SaveScene();
             //testScene.OpenScene();
             _deltaCalc.Start();
@@ -59,9 +64,9 @@ namespace Tyme_Engine.Core
 
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.Clear(ClearBufferMask.ColorBufferBit);
-            RenderInterface.RenderStaticMeshes(RenderTime,_projection);
+            RenderInterface.RenderStaticMeshes(RenderTime,_projection,this);
             Context.SwapBuffers();
-            Title = ((int)RenderFrequency).ToString();
+            //Title = ((int)RenderFrequency).ToString();
             base.OnRenderFrame(e);
         }
         #endregion
@@ -70,7 +75,7 @@ namespace Tyme_Engine.Core
         protected override void OnResize(EventArgs e)
         {
             GL.Viewport(0, 0, Width, Height);
-            _projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(80.0f), (float)Width/Height, 0.01f, 100.0f);
+            _projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(90.0f), (float)Width/Height, 0.01f, 1000.0f);
             base.OnResize(e);
         }
         #endregion

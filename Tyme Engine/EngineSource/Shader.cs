@@ -38,13 +38,13 @@ namespace Tyme_Engine.Rendering
             GL.ShaderSource(FragmentShader, FragmentShaderSource);
 
             //Compile shaders
-            GL.CompileShader(VertexShader);
+            CompileShader(VertexShader);
 
             string infoLogVert = GL.GetShaderInfoLog(VertexShader);
             if (infoLogVert != System.String.Empty)
                 System.Console.WriteLine(infoLogVert);
 
-            GL.CompileShader(FragmentShader);
+            CompileShader(FragmentShader);
 
             string infoLogFrag = GL.GetShaderInfoLog(FragmentShader);
 
@@ -68,10 +68,9 @@ namespace Tyme_Engine.Rendering
             // Additional useful shit
             // First, we have to get the number of active uniforms in the shader.
             GL.GetProgram(Handle, GetProgramParameterName.ActiveUniforms, out var numberOfUniforms);
-            Core.Debug.Log(numberOfUniforms);
             // Next, allocate the dictionary to hold the locations.
             uniformLocations = new Dictionary<string, int>();
-
+            Core.Debug.Log("List all uniforms in shader");
             // Loop over all the uniforms,
             for (var i = 0; i < numberOfUniforms; i++)
             {
@@ -83,6 +82,29 @@ namespace Tyme_Engine.Rendering
 
                 // and then add it to the dictionary.
                 uniformLocations.Add(key, location);
+                Core.Debug.Log((key, location));
+            }/*
+            Core.Debug.Log("Done.");
+            Core.Debug.Log("");
+            Core.Debug.Log("Check if lightPos is valid");
+            Core.Debug.Log(GetAttribLocation("lightPos"));
+            Core.Debug.Log("Check if DiffuseColor is valid");
+            Core.Debug.Log(GetAttribLocation("DiffuseColor"));
+            */
+        }
+
+        private static void CompileShader(int shader)
+        {
+            // Try to compile the shader
+            GL.CompileShader(shader);
+
+            // Check for compilation errors
+            GL.GetShader(shader, ShaderParameter.CompileStatus, out var code);
+            if (code != (int)All.True)
+            {
+                // We can use `GL.GetShaderInfoLog(shader)` to get information about the error.
+                var infoLog = GL.GetShaderInfoLog(shader);
+                throw new Exception($"Error occurred whilst compiling Shader({shader}).\n\n{infoLog}");
             }
         }
 
@@ -176,14 +198,29 @@ namespace Tyme_Engine.Rendering
         /// <param name="data">The data to set</param>
         public void SetVector3(string name, OpenTK.Vector3 data)
         {
-            GL.UseProgram(Handle);
-            GL.Uniform3(uniformLocations[name], data);
+            //if (uniformLocations.ContainsKey(name))
+            //{
+            
+                GL.UseProgram(Handle);
+                GL.Uniform3(uniformLocations[name], data);
+            //}
+            //else
+            //{ 
+            //foreach(string str in uniformLocations.Keys)
+            //    {
+            //        Core.Debug.Log(str);
+            //    }
+            //}
+            
         }
 
         public void SetVector4(string name, OpenTK.Vector4 data)
         {
-            GL.UseProgram(Handle);
-            GL.Uniform4(uniformLocations[name], data);
+            if (uniformLocations.ContainsKey(name))
+            {
+                GL.UseProgram(Handle);
+                GL.Uniform4(uniformLocations[name], data);
+            }
         }
         #endregion
     }
