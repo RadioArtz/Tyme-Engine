@@ -34,13 +34,14 @@ namespace Tyme_Engine
                 //parentObject._transformComponent.transform.Rotation +=(new Vector3(90,0,0));
             }
                 parentObject._staticMeshComponent.meshShader.SetVector3("DiffuseColor", new Vector3(1f, 1f, 1f));
-                parentObject._staticMeshComponent.meshShader.SetVector3("SpecularColor", new Vector3(0.0f, 0.0f, 0.0f));
+                parentObject._staticMeshComponent.meshShader.SetVector3("SpecularColor", new Vector3(1.0f, 1.0f, 1.0f));
                 parentObject._staticMeshComponent.meshShader.SetVector3("LightColor", new Vector3(1f, 1f, 1f));
                 parentObject._staticMeshComponent.meshShader.SetVector3("AmbientColor", new Vector3(.05f, .05f, .05f));
                 parentObject._staticMeshComponent.meshShader.SetVector3("lightPos", Rendering.RenderInterface.hardcorelamp.parentObject._transformComponent.transform.Location);
-                //Core.Debug.Log(parentObject._staticMeshComponent.meshShader.GetAttribLocation("lightPos"));
-                //parentObject._staticMeshComponent.meshShader.SetVector3("lightPos", new Vector3(0,2,-5));
-           
+                parentObject._staticMeshComponent.meshShader.SetVector3("viewPos", Rendering.RenderInterface._activeCamera.parentObject._transformComponent.transform.Location);
+            //Core.Debug.Log(parentObject._staticMeshComponent.meshShader.GetAttribLocation("lightPos"));
+            //parentObject._staticMeshComponent.meshShader.SetVector3("lightPos", new Vector3(0,2,-5));
+
         }
     }
 }
