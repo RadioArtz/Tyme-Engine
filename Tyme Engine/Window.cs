@@ -29,7 +29,8 @@ namespace Tyme_Engine.Core
             Scene testScene = new Scene();
             GameObject cube = new GameObject("TestObject0");
             //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "A:/Sponza/Main/NewSponza_Main_FBX_YUp.fbx");
-            string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", Path.Combine(Environment.CurrentDirectory,"EngineContent/Meshes/cube.fbx"));
+            //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", Path.Combine(Environment.CurrentDirectory,"EngineContent/Meshes/cube.fbx"));
+            string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", Path.Combine(Environment.CurrentDirectory,"EngineContent/Meshes/shading_scene.fbx"));
             //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "C:/Users/mathi/Documents/sphere.fbx");
             GameObject camera = new GameObject("MainCamera");
 
