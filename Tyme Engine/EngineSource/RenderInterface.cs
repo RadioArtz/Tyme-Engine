@@ -23,7 +23,6 @@ namespace Tyme_Engine.Rendering
                         drawcalls += obj._staticMeshComponent.subMeshes.Count;
                     }
             }
-            
         }
 
         public static void AddCamera(CameraComponent cameraComponent)

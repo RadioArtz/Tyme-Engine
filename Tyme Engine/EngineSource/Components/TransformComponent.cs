@@ -30,5 +30,22 @@ namespace Tyme_Engine.Components
 
             return model;
         }
+        public Vector3 GetForwardVector()
+        {
+            Vector3 Target = Vector3.Zero;
+            Vector3 camDir = Vector3.Normalize(transform.Location - Target);
+            return camDir;
+        }
+        public Vector3 GetRightVector()
+        {
+            Vector3 up = Vector3.UnitY;
+            Vector3 rightVec = Vector3.Normalize(Vector3.Cross(up,GetForwardVector()));
+            return rightVec;
+        }
+        public Vector3 GetUpVector()
+        {
+            Vector3 camUp = Vector3.Cross(GetForwardVector(), GetRightVector());
+            return camUp;
+        }
     }
 }

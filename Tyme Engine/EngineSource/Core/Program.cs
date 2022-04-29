@@ -8,6 +8,7 @@
             {
                 game.Run();
                 game.VSync = OpenTK.VSyncMode.Off;
+                
             }
         }
     }

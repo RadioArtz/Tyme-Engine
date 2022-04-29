@@ -31,7 +31,7 @@ namespace Tyme_Engine.Core
             GL.FrontFace(FrontFaceDirection.Ccw);
             Scene testScene = new Scene();
             GameObject cube = new GameObject("TestObject0");
-            string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "A:/Sponza/Main/NewSponza_Main_FBX_YUp.fbx");
+            string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "C:\Users\mathi\Downloads\spnz/sponza.obj");
             //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", System.IO.Path.Combine(Environment.CurrentDirectory,"EngineContent/Meshes/cube.fbx"));
             //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", System.IO.Path.Combine(Environment.CurrentDirectory,"EngineContent/Meshes/shading_scene.fbx"));
             //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "C:/Users/mathi/Documents/sphere.fbx");
