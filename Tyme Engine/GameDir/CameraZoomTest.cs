@@ -17,30 +17,35 @@ namespace Tyme_Engine
 
         public override void PreRender(float delta)
         {
+            var test = 15f * delta;
             KeyboardState input = Keyboard.GetState();
+            if (input.IsKeyDown(Key.ShiftLeft))
+            {
+                test = 50f * delta;
+            }
             if (input.IsKeyDown(Key.D))
             {
-                parentObject._transformComponent.transform.Location += new Vector3(-delta, 0, 0);
+                parentObject._transformComponent.transform.Location += new Vector3(-test, 0, 0);
             }
             if (input.IsKeyDown(Key.A))
             {
-                parentObject._transformComponent.transform.Location += new Vector3(delta, 0, 0);
+                parentObject._transformComponent.transform.Location += new Vector3(test, 0, 0);
             }
             if (input.IsKeyDown(Key.S))
             {
-                parentObject._transformComponent.transform.Location += new Vector3(0, 0, -delta);
+                parentObject._transformComponent.transform.Location += new Vector3(0, 0, -test);
             }
             if (input.IsKeyDown(Key.W))
             {
-                parentObject._transformComponent.transform.Location += new Vector3(0, 0, delta);
+                parentObject._transformComponent.transform.Location += new Vector3(0, 0, test);
             }
             if (input.IsKeyDown(Key.Q))
             {
-                parentObject._transformComponent.transform.Location += new Vector3(0, delta, 0);
+                parentObject._transformComponent.transform.Location += new Vector3(0, test, 0);
             }
             if (input.IsKeyDown(Key.E))
             {
-                parentObject._transformComponent.transform.Location += new Vector3(0, -delta, 0);
+                parentObject._transformComponent.transform.Location += new Vector3(0, -test, 0);
             }
         }
     }

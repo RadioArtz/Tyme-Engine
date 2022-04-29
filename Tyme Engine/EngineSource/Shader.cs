@@ -200,9 +200,11 @@ namespace Tyme_Engine.Rendering
         {
             //if (uniformLocations.ContainsKey(name))
             //{
-            
+            if (uniformLocations.ContainsKey(name))
+            {
                 GL.UseProgram(Handle);
                 GL.Uniform3(uniformLocations[name], data);
+            }
             //}
             //else
             //{ 

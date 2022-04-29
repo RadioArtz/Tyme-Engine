@@ -128,8 +128,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EngineSource\Components\CameraComponent.cs" />
     <Compile Include="EngineSource\Components\PointLampComponent.cs" />
-    <Compile Include="EngineSource\Core\CameraComponent.cs" />
     <Compile Include="EngineSource\Core\Component.cs" />
     <Compile Include="EngineSource\Components\TransformComponent.cs" />
     <Compile Include="EngineSource\Core\Debug.cs" />

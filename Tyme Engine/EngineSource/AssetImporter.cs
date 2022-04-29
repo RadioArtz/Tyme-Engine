@@ -10,7 +10,7 @@ namespace Tyme_Engine.IO
         public static Assimp.Scene LoadMeshSync(string path)
         {
             var assimpContext = new AssimpContext();
-            var assimpScene = assimpContext.ImportFile(path, PostProcessSteps.GenerateUVCoords | PostProcessSteps.Triangulate);
+            var assimpScene = assimpContext.ImportFile(path,PostProcessSteps.GenerateNormals |  PostProcessSteps.GenerateUVCoords | PostProcessSteps.Triangulate | PostProcessSteps.PreTransformVertices | PostProcessSteps.FindInvalidData |PostProcessSteps.OptimizeMeshes | PostProcessSteps.ImproveCacheLocality | PostProcessSteps.JoinIdenticalVertices);
             //var assimpMesh = assimpScene.Meshes.First();
             return assimpScene;
         }
@@ -19,7 +19,6 @@ namespace Tyme_Engine.IO
         {
             int index = 0;
             var tmplist = new List<float>();
-            Debug.Log(inAssimpMesh.HasNormals);
             foreach(Vector3D v3d in inAssimpMesh.Vertices)
             {
                 tmplist.Add(v3d.X);
