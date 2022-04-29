@@ -7,15 +7,15 @@ namespace Tyme_Engine.IO
     static class AssetImporter
 
     {
-        public static Mesh LoadMeshSync(string path)
+        public static Assimp.Scene LoadMeshSync(string path)
         {
             var assimpContext = new AssimpContext();
-            var assimpScene = assimpContext.ImportFile(path, PostProcessSteps.GenerateNormals | PostProcessSteps.GenerateUVCoords | PostProcessSteps.Triangulate);
-            var assimpMesh = assimpScene.Meshes.First();
-            return assimpMesh;
+            var assimpScene = assimpContext.ImportFile(path,PostProcessSteps.GenerateNormals |  PostProcessSteps.GenerateUVCoords | PostProcessSteps.Triangulate | PostProcessSteps.PreTransformVertices | PostProcessSteps.FindInvalidData |PostProcessSteps.OptimizeMeshes | PostProcessSteps.ImproveCacheLocality | PostProcessSteps.JoinIdenticalVertices);
+            //var assimpMesh = assimpScene.Meshes.First();
+            return assimpScene;
         }
 
-        public static float[] ConvertVertecies(Mesh inAssimpMesh,bool b_IncludeTexCoords, int uvChannel)
+        public static float[] ConvertVertecies(Mesh inAssimpMesh,bool b_IncludeTexCoords, bool b_IncludeNormals, int uvChannel)
         {
             int index = 0;
             var tmplist = new List<float>();
@@ -24,10 +24,17 @@ namespace Tyme_Engine.IO
                 tmplist.Add(v3d.X);
                 tmplist.Add(v3d.Y);
                 tmplist.Add(v3d.Z);
+
                 if (b_IncludeTexCoords)
                 {
                     tmplist.Add((inAssimpMesh.TextureCoordinateChannels[uvChannel])[index].X);
                     tmplist.Add((inAssimpMesh.TextureCoordinateChannels[uvChannel])[index].Y);
+                }
+                if (b_IncludeNormals)
+                {
+                    tmplist.Add(inAssimpMesh.Normals[index].X);
+                    tmplist.Add(inAssimpMesh.Normals[index].Y);
+                    tmplist.Add(inAssimpMesh.Normals[index].Z);
                 }
                 index++;
             }

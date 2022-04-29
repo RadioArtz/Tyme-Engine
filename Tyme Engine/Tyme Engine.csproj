@@ -128,7 +128,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EngineSource\Core\CameraComponent.cs" />
+    <Compile Include="EngineSource\Components\CameraComponent.cs" />
+    <Compile Include="EngineSource\Components\PointLampComponent.cs" />
     <Compile Include="EngineSource\Core\Component.cs" />
     <Compile Include="EngineSource\Components\TransformComponent.cs" />
     <Compile Include="EngineSource\Core\Debug.cs" />
@@ -142,6 +143,7 @@
     <Compile Include="EngineSource\RenderInterface.cs" />
     <Compile Include="EngineSource\AssetImporter.cs" />
     <Compile Include="EngineSource\Core\Program.cs" />
+    <Compile Include="EngineSource\Types\RuntimeStaticMesh.cs" />
     <Compile Include="GameDir\CameraZoomTest.cs" />
     <Compile Include="GameDir\TestScript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -156,12 +158,21 @@
     <None Include="EngineContent\Meshes\cube.fbx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="EngineContent\Shaders\unlit.frag">
+    <None Include="EngineContent\Meshes\shading_scene.fbx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="EngineContent\Shaders\shader.vert">
+    <Content Include="EngineContent\Shaders\lit.frag">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
+    <Content Include="EngineContent\Shaders\unlit.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="EngineContent\Shaders\unlit_textured.frag">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="EngineContent\Shaders\shader.vert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
   </ItemGroup>

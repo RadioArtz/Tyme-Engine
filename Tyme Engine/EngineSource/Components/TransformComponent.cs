@@ -10,7 +10,6 @@ namespace Tyme_Engine.Components
     {
         public Transform transform;
 
-
         public TransformComponent()
         {
             transform.Scale = new Vector3(1, 1, 1);
