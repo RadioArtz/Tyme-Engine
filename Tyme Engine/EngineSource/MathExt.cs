@@ -45,6 +45,23 @@ namespace Tyme_Engine.Core
             if (input > 1) { return 1; }
             else if (input < 0) { return 0; }
             return input;
-        } 
+        }
+        public static OpenTK.Vector3 GetForwardVector(OpenTK.Vector3 rotation)
+        {
+            OpenTK.Vector3 front;
+            front.X = (float)(Math.Cos(rotation.X)* Math.Cos(rotation.Y));
+            front.Y = (float)Math.Sin(rotation.X);
+            front.Z = (float)(Math.Cos(rotation.X) * Math.Sin(rotation.Y));
+            front.Normalize();
+            return front;
+        }
+        public static OpenTK.Vector3 GetRightVector(OpenTK.Vector3 rotation)
+        {
+            return OpenTK.Vector3.Normalize(OpenTK.Vector3.Cross(GetForwardVector(rotation), OpenTK.Vector3.UnitY));
+        }
+        public static OpenTK.Vector3 GetUpVector(OpenTK.Vector3 rotation)
+        {
+            return OpenTK.Vector3.Normalize(OpenTK.Vector3.Cross(GetRightVector(rotation),GetForwardVector(rotation)));
+        }
     }
 }

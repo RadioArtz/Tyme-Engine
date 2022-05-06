@@ -8,7 +8,7 @@
             {
                 game.Run();
                 game.VSync = OpenTK.VSyncMode.Off;
-                
+                OpenTK.Graphics.GraphicsMode Mode = new OpenTK.Graphics.GraphicsMode(new OpenTK.Graphics.ColorFormat(8, 8, 8, 8), 24);
             }
         }
     }

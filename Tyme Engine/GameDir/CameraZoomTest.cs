@@ -13,39 +13,49 @@ namespace Tyme_Engine
             OpenTK.Input.KeyboardState keyboard = OpenTK.Input.Keyboard.GetState();
             scrollvalue = MathExt.Lerp(scrollvalue, scroll.WheelPrecise, MathExt.Clamp01(delta * 16f));
             //this.parentObject._transformComponent.transform.Location = new Vector3(this.parentObject._transformComponent.transform.Location.X, this.parentObject._transformComponent.transform.Location.Y, scrollvalue/4);
+            //parentObject._transformComponent.transform.Rotation = new Vector3(0, parentObject._transformComponent.transform.Rotation.Y + delta * 1f, 0f);
         }
-
+        public CameraZoomTest()
+        {
+            //parentObject._transformComponent.transform.Rotation = new Vector3(0, 0, 0);
+        }
         public override void PreRender(float delta)
         {
-            var test = 15f * delta;
+            var transcomp = parentObject._transformComponent;
+            var test = 0.1f;
             KeyboardState input = Keyboard.GetState();
-            if (input.IsKeyDown(Key.ShiftLeft))
-            {
-                test = 50f * delta;
-            }
+            Debug.Log(transcomp.transform.Location);
             if (input.IsKeyDown(Key.D))
             {
-                parentObject._transformComponent.transform.Location += new Vector3(-test, 0, 0);
+                transcomp.transform.Location += MathExt.GetRightVector(transcomp.transform.Rotation) * test;
             }
             if (input.IsKeyDown(Key.A))
             {
-                parentObject._transformComponent.transform.Location += new Vector3(test, 0, 0);
+                transcomp.transform.Location += MathExt.GetRightVector(transcomp.transform.Rotation) * -test;
             }
             if (input.IsKeyDown(Key.S))
             {
-                parentObject._transformComponent.transform.Location += new Vector3(0, 0, -test);
+                transcomp.transform.Location += MathExt.GetForwardVector(transcomp.transform.Rotation)*-test;
             }
             if (input.IsKeyDown(Key.W))
             {
-                parentObject._transformComponent.transform.Location += new Vector3(0, 0, test);
+                transcomp.transform.Location += MathExt.GetForwardVector(transcomp.transform.Rotation) * test;
             }
             if (input.IsKeyDown(Key.Q))
             {
-                parentObject._transformComponent.transform.Location += new Vector3(0, test, 0);
+                transcomp.transform.Location += MathExt.GetUpVector(transcomp.transform.Rotation) * test;
             }
             if (input.IsKeyDown(Key.E))
             {
-                parentObject._transformComponent.transform.Location += new Vector3(0, -test, 0);
+                transcomp.transform.Location += MathExt.GetUpVector(transcomp.transform.Rotation) * -test;
+            }
+            if (input.IsKeyDown(Key.Right))
+            {
+                transcomp.transform.Rotation += new Vector3(0, delta * 1f, 0);
+            }
+            if (input.IsKeyDown(Key.Left))
+            {
+                transcomp.transform.Rotation += new Vector3(0, delta * -1f, 0);
             }
         }
     }

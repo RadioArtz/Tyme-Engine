@@ -12,9 +12,8 @@ namespace Tyme_Engine.Core
 {
     class EngineWindow : GameWindow
     {
-        public EngineWindow(int width, int height, string title) : base(width, height, GraphicsMode.Default, title)
+        public EngineWindow(int width, int height, string title) : base(width, height, GraphicsMode.Default, title,GameWindowFlags.Default,DisplayDevice.Default,3,1,GraphicsContextFlags.ForwardCompatible)
         {
-            
         }
         private Matrix4 _projection;
         private Stopwatch _deltaCalc = new Stopwatch();
@@ -27,16 +26,18 @@ namespace Tyme_Engine.Core
             GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
             GL.Enable(EnableCap.DepthTest);
             GL.Enable(EnableCap.CullFace);
+            //GL.Enable(EnableCap.FramebufferSrgb);
             GL.CullFace(CullFaceMode.Back);
             GL.FrontFace(FrontFaceDirection.Ccw);
             Scene testScene = new Scene();
             GameObject cube = new GameObject("TestObject0");
-            string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "C:\Users\mathi\Downloads\spnz/sponza.obj");
+            string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "C:/Users/mathi/Downloads/spnz/sponza.obj");
+            //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "A:/Sponza/Main/NewSponza_Main_FBX_ZUp.fbx");
             //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", System.IO.Path.Combine(Environment.CurrentDirectory,"EngineContent/Meshes/cube.fbx"));
             //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", System.IO.Path.Combine(Environment.CurrentDirectory,"EngineContent/Meshes/shading_scene.fbx"));
             //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "C:/Users/mathi/Documents/sphere.fbx");
             GameObject camera = new GameObject("MainCamera");
-
+            
             camera.AddComponent(new TransformComponent());
             camera.AddComponent(new CameraComponent());
             camera.AddComponent(new CameraZoomTest());
@@ -46,13 +47,11 @@ namespace Tyme_Engine.Core
             cube.AddComponent(new TransformComponent());
             cube.AddComponent(new TestScript());
 
-
-
             //testScene.SaveScene();
             //testScene.OpenScene();
             _deltaCalc.Start();
         }
-        #endregion
+        #endregion  
 
         #region LogicTick
         protected override void OnUpdateFrame(FrameEventArgs e)
@@ -71,7 +70,7 @@ namespace Tyme_Engine.Core
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.Clear(ClearBufferMask.ColorBufferBit);
             RenderInterface.RenderStaticMeshes(RenderTime, _projection);
-            Title = "DrawCalls:" + RenderInterface.drawcalls.ToString() + " FPS:" + Math.Round(1f / RenderTime).ToString();
+            Title = "DrawCalls:" + RenderInterface.drawcalls.ToString() + " FPS:" + Math.Round(1f / RenderTime).ToString() + " Vertices: " + RenderInterface.verticies.ToString() + " Faces: " + RenderInterface.Faces.ToString();
             Context.SwapBuffers();
             //Title = ((int)RenderFrequency).ToString();
             base.OnRenderFrame(e);

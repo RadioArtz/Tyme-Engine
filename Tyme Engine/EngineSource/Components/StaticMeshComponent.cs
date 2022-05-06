@@ -24,8 +24,7 @@ namespace Tyme_Engine.Components
             string input = Interaction.InputBox("Enter Texture file path", "Open Texture", Path.Combine(Environment.CurrentDirectory, "EngineContent/Textures/kenney_prototypetextures_png/Dark/texture_03.png"));
             
             texture1 = Texture.LoadFromFile(input);
-            
-            
+           
             meshShader = new Shader(Path.Combine(Environment.CurrentDirectory, "EngineContent/Shaders/shader.vert"), Path.Combine(Environment.CurrentDirectory, "EngineContent/Shaders/lit.frag"));
             
             meshShader.Use();

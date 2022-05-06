@@ -14,7 +14,7 @@ namespace Tyme_Engine.Types
     {
         //later replace this for a refference to the mesh in assetmanager
         [NonSerialized]
-        private Assimp.Mesh loadedMesh;
+        public Assimp.Mesh loadedMesh;
         [NonSerialized]
         int VertexBufferObject;
         [NonSerialized]

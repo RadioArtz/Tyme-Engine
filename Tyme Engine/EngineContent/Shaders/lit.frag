@@ -15,12 +15,12 @@ uniform vec3 LightColor;
 void main()
 {
 	vec3 norm = normalize(Normal);
-	vec3 lightDir = normalize((lightPos*-1)-FragPos); //multiplying lightpos with -1 cause for some reason the lightsource moves in the opposite direction of where it actually is?
+	vec3 lightDir = normalize((lightPos)-FragPos); //multiplying lightpos with -1 cause for some reason the lightsource moves in the opposite direction of where it actually is?
 
 	float diff = max(dot(norm,lightDir),0.0);
 	vec3 diffResult = diff * LightColor;
 	
-	vec3 viewDir = normalize((viewPos*-1) - FragPos);
+	vec3 viewDir = normalize((viewPos) - FragPos);
 	vec3 reflectDir = reflect(-lightDir, norm);
 
 	float spec = pow(max(dot(viewDir, reflectDir), 0.0), 2);

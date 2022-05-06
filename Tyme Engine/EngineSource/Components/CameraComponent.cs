@@ -13,8 +13,10 @@ namespace Tyme_Engine.Components
 
         public void UpdateViewMatrix()
         {
-            view = Matrix4.CreateTranslation(parentObject._transformComponent.transform.Location);
-            /*
+            var transformref = parentObject._transformComponent.transform;
+            //view = Matrix4.CreateTranslation(transformref.transform.Location);
+            view = Matrix4.LookAt(transformref.Location, transformref.Location + MathExt.GetForwardVector(transformref.Rotation), MathExt.GetUpVector(transformref.Rotation));
+                /*
             view = view * Matrix4.CreateRotationX(parentObject._transformComponent.transform.Rotation.X);
             view = view * Matrix4.CreateRotationY(parentObject._transformComponent.transform.Rotation.Y);
             view = view * Matrix4.CreateRotationZ(parentObject._transformComponent.transform.Rotation.Z);*/
