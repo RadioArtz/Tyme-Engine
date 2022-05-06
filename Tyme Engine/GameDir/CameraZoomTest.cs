@@ -24,7 +24,6 @@ namespace Tyme_Engine
             var transcomp = parentObject._transformComponent;
             var test = 0.1f;
             KeyboardState input = Keyboard.GetState();
-            Debug.Log(transcomp.transform.Location);
             if (input.IsKeyDown(Key.D))
             {
                 transcomp.transform.Location += MathExt.GetRightVector(transcomp.transform.Rotation) * test;

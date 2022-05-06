@@ -98,9 +98,6 @@ namespace Tyme_Engine.Types
 
         public void OnDestroyed()
         {
-            GL.BindBuffer(BufferTarget.ArrayBuffer, VertexArrayObject);
-            GL.BindBuffer(BufferTarget.ArrayBuffer, VertexArrayObject);
-            GL.BindBuffer(BufferTarget.ElementArrayBuffer, ElementBufferObject);
             GL.DeleteBuffer(VertexBufferObject);
             GL.DeleteBuffer(VertexArrayObject);
             GL.DeleteBuffer(ElementBufferObject);

@@ -2,7 +2,7 @@
 using OpenTK;
 using System.Diagnostics;
 using OpenTK.Input;
-
+using System;
 namespace Tyme_Engine
 {
     class TestScript : UserScript   
@@ -24,7 +24,7 @@ namespace Tyme_Engine
         { 
             //parentObject._transformComponent.transform.Rotation = new Vector3(-90,0, 0f);
             //parentObject._transformComponent.transform.Location = new Vector3(0, (float)Math.Sin(_timer.Elapsed.TotalSeconds), 0);
-            //parentObject._transformComponent.transform.Rotation = new Vector3(-90f, parentObject._transformComponent.transform.Rotation.Y + delta * 5f, 0f);
+            parentObject._transformComponent.transform.Rotation = new Vector3(0, parentObject._transformComponent.transform.Rotation.Y + delta * 5f, 0f);
         }
         public override void PreRender(float delta)
         {

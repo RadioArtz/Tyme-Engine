@@ -24,15 +24,14 @@ namespace Tyme_Engine.Rendering
             {
                 if (obj._staticMeshComponent != null)
                     {
-                        obj._staticMeshComponent.RenderMesh(delta, projection, _activeCamera.view);
-                        drawcalls += obj._staticMeshComponent.subMeshes.Count;
-                        foreach(Types.RuntimeStaticMesh mesh in obj._staticMeshComponent.subMeshes)
-                        {
+                    obj._staticMeshComponent.RenderMesh(delta, projection, _activeCamera.view);
+                    drawcalls += obj._staticMeshComponent.subMeshes.Count;
+                    foreach(Types.RuntimeStaticMesh mesh in obj._staticMeshComponent.subMeshes)
+                    {
                         verticies += mesh.loadedMesh.Vertices.Count;
                         Faces += mesh.loadedMesh.FaceCount;
-                        }
-
                     }
+                }
             }
         }
 
