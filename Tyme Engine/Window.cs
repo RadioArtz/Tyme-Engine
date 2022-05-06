@@ -68,7 +68,6 @@ namespace Tyme_Engine.Core
             ScriptManager.ScriptRender(_deltatime);
             
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-            GL.Clear(ClearBufferMask.ColorBufferBit);
             RenderInterface.RenderStaticMeshes(RenderTime, _projection);
             Title = "DrawCalls:" + RenderInterface.drawcalls.ToString() + " FPS:" + Math.Round(1f / RenderTime).ToString() + " Vertices: " + RenderInterface.verticies.ToString() + " Faces: " + RenderInterface.Faces.ToString();
             Context.SwapBuffers();
