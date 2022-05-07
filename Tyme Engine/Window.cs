@@ -32,25 +32,21 @@ namespace Tyme_Engine.Core
             Scene testScene = new Scene();
             GameObject cube = new GameObject("TestObject0");
             //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "C:/Users/mathi/Downloads/spnz/sponza.obj");
-            //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "A:/Sponza/Main/NewSponza_Main_FBX_ZUp.fbx");
-            string input2 = Interaction.InputBox("Enter Mesh file path", "Open Mesh", System.IO.Path.Combine(Environment.CurrentDirectory,"EngineContent/Meshes/cube.fbx"));
-            string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", System.IO.Path.Combine(Environment.CurrentDirectory,"EngineContent/Meshes/shading_scene.fbx"));
+            string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", System.IO.Path.Combine(Environment.CurrentDirectory, "EngineContent/Meshes/sponza.obj"));
+            //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "A:/Sponza/Main/Main/NewSponza_Main_FBX_YUp.fbx");
+            //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", System.IO.Path.Combine(Environment.CurrentDirectory,"EngineContent/Meshes/cube.fbx"));
+            //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", System.IO.Path.Combine(Environment.CurrentDirectory,"EngineContent/Meshes/shading_scene.fbx"));
             //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "C:/Users/mathi/Documents/sphere.fbx");
             GameObject camera = new GameObject("MainCamera");
             
             camera.AddComponent(new TransformComponent());
             camera.AddComponent(new CameraComponent());
-            camera.AddComponent(new CameraZoomTest());
+            camera.AddComponent(new EditorCamera(this));
             camera.AddComponent(new PointLampComponent());
-
+            
             cube.AddComponent(new StaticMeshComponent(AssetImporter.LoadMeshSync(input)));
             cube.AddComponent(new TransformComponent());
-            cube.AddComponent(new TestScript());
-
-            GameObject cube2 = new GameObject("cube2");
-            cube2.AddComponent(new TransformComponent());
-            cube2.AddComponent(new StaticMeshComponent(AssetImporter.LoadMeshSync(input2)));
-            cube2.AddComponent(new TestScript());
+            cube.AddComponent(new TestScript(1));
 
             //testScene.SaveScene();
             //testScene.OpenScene();
@@ -66,6 +62,14 @@ namespace Tyme_Engine.Core
             ScriptManager.ScriptUpdate((_deltatime));
         }
         #endregion
+        public void SetShowMouseCursor(bool showCursor)
+        {
+            CursorVisible = showCursor;
+        }
+        public void SetCursorGrabbed(bool grabCursor)
+        {
+            CursorGrabbed = grabCursor;
+        }
 
         #region RenderTick
         protected override void OnRenderFrame(FrameEventArgs e)

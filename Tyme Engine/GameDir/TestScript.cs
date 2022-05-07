@@ -9,6 +9,7 @@ namespace Tyme_Engine
     {
         private Stopwatch _timer = new Stopwatch();
         //private GameObject leepic;
+        private float dir;
         public override void Start()
         {
             //parentObject._staticMeshComponent.meshShader.SetInt("texture0", parentObject._staticMeshComponent.texture1.Handle);
@@ -19,12 +20,15 @@ namespace Tyme_Engine
             _timer.Start();
             this.parentObject._transformComponent.transform.Scale = new Vector3(.02f);
         }
-
+        public TestScript(float direction)
+        {
+            dir = direction;    
+        }
         public override void Update(float delta)
         { 
             //parentObject._transformComponent.transform.Rotation = new Vector3(-90,0, 0f);
             //parentObject._transformComponent.transform.Location = new Vector3(0, (float)Math.Sin(_timer.Elapsed.TotalSeconds), 0);
-            parentObject._transformComponent.transform.Rotation = new Vector3(0, parentObject._transformComponent.transform.Rotation.Y + delta * 5f, 0f);
+            //parentObject._transformComponent.transform.Rotation = new Vector3(0, parentObject._transformComponent.transform.Rotation.Y + delta * 5f*dir, 0f);
         }
         public override void PreRender(float delta)
         {

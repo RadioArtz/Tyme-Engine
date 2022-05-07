@@ -14,12 +14,9 @@ namespace Tyme_Engine.Components
         public void UpdateViewMatrix()
         {
             var transformref = parentObject._transformComponent.transform;
-            //view = Matrix4.CreateTranslation(transformref.transform.Location);
-            view = Matrix4.LookAt(transformref.Location, transformref.Location + MathExt.GetForwardVector(transformref.Rotation), MathExt.GetUpVector(transformref.Rotation));
-                /*
-            view = view * Matrix4.CreateRotationX(parentObject._transformComponent.transform.Rotation.X);
-            view = view * Matrix4.CreateRotationY(parentObject._transformComponent.transform.Rotation.Y);
-            view = view * Matrix4.CreateRotationZ(parentObject._transformComponent.transform.Rotation.Z);*/
+            Vector3 rotDegrees = transformref.Rotation;
+            //Vector3 rotRadians = (transformref.Rotation * (MathHelper.Pi / 180f));
+            view = Matrix4.LookAt(transformref.Location, transformref.Location + MathExt.GetForwardVector(rotDegrees), MathExt.GetUpVector(rotDegrees));
         }
     }
-}
+} 

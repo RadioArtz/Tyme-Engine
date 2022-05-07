@@ -46,19 +46,38 @@ namespace Tyme_Engine.Core
             else if (input < 0) { return 0; }
             return input;
         }
-        public static OpenTK.Vector3 GetForwardVector(OpenTK.Vector3 rotation)
+
+        /// <summary>
+        /// Calculates a rotations Forward Vector. Expects rotation in Degrees.
+        /// </summary>
+        /// <param name="rotation"></param>
+        /// <returns></returns>
+        public static OpenTK.Vector3 GetForwardVector(OpenTK.Vector3 rotationDeg)
         {
+            OpenTK.Vector3 rotRadians = (rotationDeg * (OpenTK.MathHelper.Pi / 180f));
             OpenTK.Vector3 front;
-            front.X = (float)(Math.Cos(rotation.X)* Math.Cos(rotation.Y));
-            front.Y = (float)Math.Sin(rotation.X);
-            front.Z = (float)(Math.Cos(rotation.X) * Math.Sin(rotation.Y));
+            front.X = (float)(Math.Cos(rotRadians.X)* Math.Cos(rotRadians.Y));
+            front.Y = (float)Math.Sin(rotRadians.X);
+            front.Z = (float)(Math.Cos(rotRadians.X) * Math.Sin(rotRadians.Y));
             front.Normalize();
             return front;
         }
+
+        /// <summary>
+        /// Calculates a rotations Right Vector. Expects rotation in Degrees.
+        /// </summary>
+        /// <param name="rotation"></param>
+        /// <returns></returns>
         public static OpenTK.Vector3 GetRightVector(OpenTK.Vector3 rotation)
         {
             return OpenTK.Vector3.Normalize(OpenTK.Vector3.Cross(GetForwardVector(rotation), OpenTK.Vector3.UnitY));
         }
+
+        /// <summary>
+        /// Calculates a rotations Up Vector. Expects rotation in Degrees.
+        /// </summary>
+        /// <param name="rotation"></param>
+        /// <returns></returns>
         public static OpenTK.Vector3 GetUpVector(OpenTK.Vector3 rotation)
         {
             return OpenTK.Vector3.Normalize(OpenTK.Vector3.Cross(GetRightVector(rotation),GetForwardVector(rotation)));
