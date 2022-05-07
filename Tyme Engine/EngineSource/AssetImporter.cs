@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Assimp;
-using Tyme_Engine.Core;
+
 namespace Tyme_Engine.IO
 {
     static class AssetImporter

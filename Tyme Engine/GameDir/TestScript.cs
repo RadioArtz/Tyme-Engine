@@ -2,7 +2,7 @@
 using OpenTK;
 using System.Diagnostics;
 using OpenTK.Input;
-using System;
+
 namespace Tyme_Engine
 {
     class TestScript : UserScript   
@@ -12,11 +12,6 @@ namespace Tyme_Engine
         private float dir;
         public override void Start()
         {
-            //parentObject._staticMeshComponent.meshShader.SetInt("texture0", parentObject._staticMeshComponent.texture1.Handle);
-            //leepic = new GameObject("TestObject");
-            //leepic.AddComponent(new StaticMeshComponent(AssetImporter.LoadMeshSync("C:/Users/mathi/Documents/Cube.fbx")));
-            //leepic.AddComponent(new TransformComponent());
-            
             _timer.Start();
             this.parentObject._transformComponent.transform.Scale = new Vector3(.02f);
         }
@@ -43,9 +38,6 @@ namespace Tyme_Engine
                 parentObject._staticMeshComponent.meshShader.SetVector3("AmbientColor", new Vector3(.05f, .05f, .05f));
                 parentObject._staticMeshComponent.meshShader.SetVector3("lightPos", Rendering.RenderInterface.hardcorelamp.parentObject._transformComponent.transform.Location);
                 parentObject._staticMeshComponent.meshShader.SetVector3("viewPos", Rendering.RenderInterface._activeCamera.parentObject._transformComponent.transform.Location);
-            //Core.Debug.Log(parentObject._staticMeshComponent.meshShader.GetAttribLocation("lightPos"));
-            //parentObject._staticMeshComponent.meshShader.SetVector3("lightPos", new Vector3(0,2,-5));
-
         }
     }
 }

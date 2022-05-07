@@ -83,14 +83,7 @@ namespace Tyme_Engine.Rendering
                 // and then add it to the dictionary.
                 uniformLocations.Add(key, location);
                 Core.Debug.Log((key, location));
-            }/*
-            Core.Debug.Log("Done.");
-            Core.Debug.Log("");
-            Core.Debug.Log("Check if lightPos is valid");
-            Core.Debug.Log(GetAttribLocation("lightPos"));
-            Core.Debug.Log("Check if DiffuseColor is valid");
-            Core.Debug.Log(GetAttribLocation("DiffuseColor"));
-            */
+            }
         }
 
         private static void CompileShader(int shader)

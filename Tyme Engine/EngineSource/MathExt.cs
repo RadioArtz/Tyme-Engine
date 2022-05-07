@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Numerics;
+
 namespace Tyme_Engine.Core
 {
     public static class MathExt
@@ -50,7 +47,7 @@ namespace Tyme_Engine.Core
         /// <summary>
         /// Calculates a rotations Forward Vector. Expects rotation in Degrees.
         /// </summary>
-        /// <param name="rotation"></param>
+        /// <param name="rotationDeg"> Rotation in Degrees</param>
         /// <returns></returns>
         public static OpenTK.Vector3 GetForwardVector(OpenTK.Vector3 rotationDeg)
         {
@@ -66,21 +63,21 @@ namespace Tyme_Engine.Core
         /// <summary>
         /// Calculates a rotations Right Vector. Expects rotation in Degrees.
         /// </summary>
-        /// <param name="rotation"></param>
+        /// <param name="rotationDeg"> Rotation in Degrees</param>
         /// <returns></returns>
-        public static OpenTK.Vector3 GetRightVector(OpenTK.Vector3 rotation)
+        public static OpenTK.Vector3 GetRightVector(OpenTK.Vector3 rotationDeg)
         {
-            return OpenTK.Vector3.Normalize(OpenTK.Vector3.Cross(GetForwardVector(rotation), OpenTK.Vector3.UnitY));
+            return OpenTK.Vector3.Normalize(OpenTK.Vector3.Cross(GetForwardVector(rotationDeg), OpenTK.Vector3.UnitY));
         }
 
         /// <summary>
         /// Calculates a rotations Up Vector. Expects rotation in Degrees.
         /// </summary>
-        /// <param name="rotation"></param>
+        /// <param name="rotationDeg"> Rotation in Degrees</param>
         /// <returns></returns>
-        public static OpenTK.Vector3 GetUpVector(OpenTK.Vector3 rotation)
+        public static OpenTK.Vector3 GetUpVector(OpenTK.Vector3 rotationDeg)
         {
-            return OpenTK.Vector3.Normalize(OpenTK.Vector3.Cross(GetRightVector(rotation),GetForwardVector(rotation)));
+            return OpenTK.Vector3.Normalize(OpenTK.Vector3.Cross(GetRightVector(rotationDeg),GetForwardVector(rotationDeg)));
         }
     }
 }

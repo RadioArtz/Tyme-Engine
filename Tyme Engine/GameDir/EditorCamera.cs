@@ -1,6 +1,7 @@
 ﻿using Tyme_Engine.Core;
 using OpenTK;
 using OpenTK.Input;
+
 namespace Tyme_Engine
 {
     class EditorCamera : UserScript
@@ -13,8 +14,6 @@ namespace Tyme_Engine
 
         public override void Update(float delta)
         {
-            
-
             //scrollvalue = MathExt.Lerp(scrollvalue, mouse.WheelPrecise, MathExt.Clamp01(delta * 16f));
             //this.parentObject._transformComponent.transform.Location = new Vector3(this.parentObject._transformComponent.transform.Location.X, this.parentObject._transformComponent.transform.Location.Y, scrollvalue/4);
             //parentObject._transformComponent.transform.Rotation = new Vector3(0, parentObject._transformComponent.transform.Rotation.Y + delta * 1f, 0f);
