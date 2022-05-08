@@ -8,6 +8,5 @@ namespace Tyme_Engine.Components
 {
     class PointLampComponent : Component
     {
-        // C:/Users/mathi/Documents/doublescproom.fbx
     }
 }

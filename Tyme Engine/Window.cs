@@ -80,7 +80,6 @@ namespace Tyme_Engine.Core
             RenderInterface.RenderStaticMeshes(RenderTime, _projection);
             Title = "DrawCalls:" + RenderInterface.drawcalls.ToString() + " FPS:" + Math.Round(1f / RenderTime).ToString() + " Vertices: " + RenderInterface.verticies.ToString() + " Faces: " + RenderInterface.Faces.ToString();
             Context.SwapBuffers();
-            //Title = ((int)RenderFrequency).ToString();
             base.OnRenderFrame(e);
         }
         #endregion

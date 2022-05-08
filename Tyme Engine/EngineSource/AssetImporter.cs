@@ -10,7 +10,6 @@ namespace Tyme_Engine.IO
         {
             var assimpContext = new AssimpContext();
             var assimpScene = assimpContext.ImportFile(path,PostProcessSteps.GenerateNormals |  PostProcessSteps.GenerateUVCoords | PostProcessSteps.Triangulate | PostProcessSteps.PreTransformVertices | PostProcessSteps.FindInvalidData |PostProcessSteps.OptimizeMeshes | PostProcessSteps.ImproveCacheLocality | PostProcessSteps.JoinIdenticalVertices);
-            //var assimpMesh = assimpScene.Meshes.First();
             return assimpScene;
         }
 

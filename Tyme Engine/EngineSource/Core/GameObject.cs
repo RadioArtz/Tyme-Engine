@@ -54,13 +54,6 @@ namespace Tyme_Engine.Core
 
         public void DestroyObject()
         {
-            /*
-            this._transformComponent?.OnComponentDestroyed();
-            this._staticMeshComponent?.OnComponentDestroyed();
-            foreach (Component comp in this.childComponents)
-            {
-                comp.OnComponentDestroyed();
-            }*/
             _staticMeshComponent?.OnComponentDestroyed();
             ObjectManager.DestroyObject(this);
         }

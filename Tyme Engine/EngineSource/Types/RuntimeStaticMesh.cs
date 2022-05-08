@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 namespace Tyme_Engine.Types
 {
-    class RuntimeStaticMesh
+    class RuntimeStaticMesh 
     {
         //later replace this for a refference to the mesh in assetmanager
         [NonSerialized]
@@ -27,24 +27,13 @@ namespace Tyme_Engine.Types
         [NonSerialized]
         public Texture texture1;
 
-        //Matrix4 transMatrix = Matrix4.CreateTranslation()
-        /*
-        //more advanced import method to pass initial settings, might scrap this but will keep it for the moment.
-        public StaticMeshComponent(Assimp.Mesh assimpMesh, bool bShouldRender, bool bShouldShadow)
-        {
-            ChangeMesh(assimpMesh);
-            //TODO: later have the component request the mesh to be loaded or sent over by the Asset Manager. for now we just load the mesh externally and then send it to the component.
-        }*/
-
         public RuntimeStaticMesh(Assimp.Mesh assimpMesh, Texture tex, Shader inshader)
         {
             texture1 = tex;
             meshShader = inshader;
-            // Core.Debug.Log(texture1 == null);
             ChangeMesh(assimpMesh);
         }
 
-        //this'll make more sense later after above TODO is implemented.
         public void ChangeMesh(Assimp.Mesh assimpMesh)
         {
             loadedMesh = assimpMesh;
@@ -77,7 +66,6 @@ namespace Tyme_Engine.Types
             texture1.Use(TextureUnit.Texture0);
             meshShader.SetInt("texture0", 0);
 
-            //meshShader.SetVector4("tintColor", new Vector4(0.6f, 0.3f, 0.1f, 1));
             meshShader.Use();
         }
 

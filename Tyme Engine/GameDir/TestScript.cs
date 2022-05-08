@@ -8,7 +8,6 @@ namespace Tyme_Engine
     class TestScript : UserScript   
     {
         private Stopwatch _timer = new Stopwatch();
-        //private GameObject leepic;
         private float dir;
         public override void Start()
         {
@@ -21,16 +20,12 @@ namespace Tyme_Engine
         }
         public override void Update(float delta)
         { 
-            //parentObject._transformComponent.transform.Rotation = new Vector3(-90,0, 0f);
-            //parentObject._transformComponent.transform.Location = new Vector3(0, (float)Math.Sin(_timer.Elapsed.TotalSeconds), 0);
-            //parentObject._transformComponent.transform.Rotation = new Vector3(0, parentObject._transformComponent.transform.Rotation.Y + delta * 5f*dir, 0f);
         }
         public override void PreRender(float delta)
         {
             KeyboardState input = Keyboard.GetState();
             if (input.IsKeyDown(Key.Enter))
             {
-                //parentObject._transformComponent.transform.Rotation +=(new Vector3(90,0,0));
             }
                 parentObject._staticMeshComponent.meshShader.SetVector3("DiffuseColor", new Vector3(1f, 1f, 1f));
                 parentObject._staticMeshComponent.meshShader.SetVector3("SpecularColor", new Vector3(.125f, .125f, .125f));

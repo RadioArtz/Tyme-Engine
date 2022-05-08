@@ -22,18 +22,12 @@ namespace Tyme_Engine
         public static void RemoveScript(int indexToRemove)
         {
             scriptBuffer.RemoveAt(indexToRemove);
-            //scriptBuffer[indexToRemove].DestroyObject();
         }
 
         public static List<UserScript> GetAllScripts()
         {
             return scriptBuffer;
         }
-        /*
-        public static void DestroyScript(UserScript scriptoDestroy)
-        {
-            scriptoDestroy = null;
-        }*/
 
         public static void ScriptRender(float delta)
         {
