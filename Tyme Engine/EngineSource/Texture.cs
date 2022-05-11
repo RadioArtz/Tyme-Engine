@@ -8,7 +8,7 @@ namespace Tyme_Engine.Rendering
     {
         public int Handle;
 
-        public static Texture LoadFromFile(string texturepath)
+        public static Texture LoadFromFile(string texturepath, TextureMagFilter filterMode, TextureMinFilter mipmaps,int anisotropicSamples)
         {
             int handle = GL.GenTexture();
             Texture t = new Texture(handle);
@@ -19,10 +19,12 @@ namespace Tyme_Engine.Rendering
             GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, data.Width, data.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
             source.UnlockBits(data);
 
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
-            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMinFilter.Linear);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)mipmaps);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)filterMode);
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.DetailTextureModeSgis, (int)TextureParameterName.DetailTextureModeSgis);
+            GL.TexParameter(TextureTarget.Texture2D, (TextureParameterName)All.TextureMaxAnisotropy, anisotropicSamples);
             GL.GenerateTextureMipmap(handle);
+            
             source.Dispose();
 
             return t;

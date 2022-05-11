@@ -44,7 +44,7 @@ namespace Tyme_Engine
 
             if (keyboard.IsKeyDown(Key.ShiftLeft))
             {
-                movespeed = delta * 12;
+                movespeed = delta * 25;
             }
             if (keyboard.IsKeyDown(Key.D))
             {

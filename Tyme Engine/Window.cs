@@ -88,7 +88,7 @@ namespace Tyme_Engine.Core
         protected override void OnResize(EventArgs e)
         {
             GL.Viewport(0, 0, Width, Height);
-            _projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(90.0f), (float)Width / Height, 0.1f, 512.0f);
+            _projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(90.0f), (float)Width / Height, 0.1f, 1024);
             base.OnResize(e);
         }
         #endregion

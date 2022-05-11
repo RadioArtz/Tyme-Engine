@@ -18,12 +18,10 @@ namespace Tyme_Engine.Components
         public Texture texture1;
 
         public List<Types.RuntimeStaticMesh> subMeshes = new List<Types.RuntimeStaticMesh>();
-
         public StaticMeshComponent(Assimp.Scene MeshScene)
         {
             string input = Interaction.InputBox("Enter Texture file path", "Open Texture", Path.Combine(Environment.CurrentDirectory, "EngineContent/Textures/kenney_prototypetextures_png/Dark/texture_03.png"));
-            
-            texture1 = Texture.LoadFromFile(input);
+            texture1 = Texture.LoadFromFile(input,TextureMagFilter.Linear,TextureMinFilter.LinearMipmapLinear,16);
            
             meshShader = new Shader(Path.Combine(Environment.CurrentDirectory, "EngineContent/Shaders/shader.vert"), Path.Combine(Environment.CurrentDirectory, "EngineContent/Shaders/lit.frag"));
             
