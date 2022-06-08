@@ -34,8 +34,8 @@ namespace Tyme_Engine.Core
             if (typeof(UserScript).IsInstanceOfType(componentToAdd))
                 ScriptManager.AddScript((UserScript)componentToAdd);
 
-            if (typeof(PointLampComponent).IsInstanceOfType(componentToAdd))
-                Rendering.RenderInterface.hardcorelamp = (PointLampComponent)componentToAdd;
+            if (typeof(PointLightComponent).IsInstanceOfType(componentToAdd))
+                Rendering.RenderInterface._hardcorelamp = (PointLightComponent)componentToAdd;
         }
 
         public void RemoveComponent(Component componentToRemove)

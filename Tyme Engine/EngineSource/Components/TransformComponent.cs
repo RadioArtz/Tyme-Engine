@@ -22,11 +22,11 @@ namespace Tyme_Engine.Components
             var yRot = Matrix4.CreateRotationY(MathHelper.DegreesToRadians(transform.Rotation.Y));
             var zRot = Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(transform.Rotation.Z));
 
-            model = model * xRot;
-            model = model * yRot;
-            model = model * zRot;
-            model = model * Matrix4.CreateScale(transform.Scale);
-            model = model * Matrix4.CreateTranslation(transform.Location);
+            model *= xRot;
+            model *= yRot;
+            model *= zRot;
+            model *= Matrix4.CreateScale(transform.Scale);
+            model *= Matrix4.CreateTranslation(transform.Location);
 
             return model;
         }

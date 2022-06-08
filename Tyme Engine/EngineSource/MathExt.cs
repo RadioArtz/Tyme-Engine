@@ -13,15 +13,15 @@ namespace Tyme_Engine.Core
         {
             return (a+(b-a)*alpha);
         }
-        public static Vector2 Vlerp(Vector2 a, Vector2 b, float alpha)
+        public static Vector2 Verp(Vector2 a, Vector2 b, float alpha)
         {
             return new Vector2((a.X + (b.X - a.X) * alpha), (a.Y + (b.Y - a.Y) * alpha));
         }
-        public static Vector3 Vlerp(Vector3 a, Vector3 b, float alpha)
+        public static Vector3 Verp(Vector3 a, Vector3 b, float alpha)
         {
             return new Vector3((a.X + (b.X - a.X) * alpha), (a.Y + (b.Y - a.Y) * alpha), (a.Z + (b.Z - a.Z) * alpha));
         }
-        public static Vector4 Vlerp(Vector4 a, Vector4 b, float alpha)
+        public static Vector4 Verp(Vector4 a, Vector4 b, float alpha)
         {
             return new Vector4((a.X + (b.X - a.X) * alpha), (a.Y + (b.Y - a.Y) * alpha), (a.Z + (b.Z - a.Z) * alpha), (a.W + (b.W - a.W) * alpha));
         }

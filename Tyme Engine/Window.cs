@@ -38,11 +38,17 @@ namespace Tyme_Engine.Core
             //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", System.IO.Path.Combine(Environment.CurrentDirectory,"EngineContent/Meshes/shading_scene.fbx"));
             //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "C:/Users/mathi/Documents/sphere.fbx");
             GameObject camera = new GameObject("MainCamera");
-            
+            GameObject gameObject = new GameObject("pimel");
+
+            gameObject.AddComponent(new TransformComponent());
+            gameObject.AddComponent(new PointLightComponent());
+            gameObject._transformComponent.transform.Location = new Vector3(0, 2, 0);
+            gameObject.AddComponent(new Hoverlamp(1));
+
             camera.AddComponent(new TransformComponent());
             camera.AddComponent(new CameraComponent());
             camera.AddComponent(new EditorCamera(this));
-            camera.AddComponent(new PointLampComponent());
+            //camera.AddComponent(new PointLightComponent());
             
             cube.AddComponent(new StaticMeshComponent(AssetImporter.LoadMeshSync(input)));
             cube.AddComponent(new TransformComponent());

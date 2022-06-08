@@ -29,7 +29,7 @@ namespace Tyme_Engine
             float deltaX = mouse.X - lastPos.X;
             float deltaY = mouse.Y - lastPos.Y;
             lastPos = new Vector2(mouse.X, mouse.Y);
-
+            Rendering.RenderInterface._hardcorelamp._radius = mouse.ScrollWheelValue;
             if (!mouse.IsButtonDown(MouseButton.Right))
             {
                 _window.SetCursorGrabbed(false);
@@ -41,6 +41,7 @@ namespace Tyme_Engine
             _window.SetShowMouseCursor(false);
             transcomp.transform.Rotation += new Vector3(-deltaY, deltaX, 0)*sensitivity;
             transcomp.transform.Rotation.X = MathHelper.Clamp(transcomp.transform.Rotation.X,-89.9f , 89.9f);
+            
 
             if (keyboard.IsKeyDown(Key.ShiftLeft))
             {
@@ -70,6 +71,7 @@ namespace Tyme_Engine
             {
                 transcomp.transform.Location += MathExt.GetUpVector(transcomp.transform.Rotation) * -movespeed;
             }
+            Core.Debug.Log(this.GetParent()._transformComponent.transform.Location);
         }
     }
 }

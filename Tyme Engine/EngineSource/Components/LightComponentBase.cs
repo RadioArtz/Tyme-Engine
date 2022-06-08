@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using Tyme_Engine.Core;
 namespace Tyme_Engine.Components
 {
-    class PointLampComponent : Component
+    class LightComponentBase : Component
     {
+        public OpenTK.Vector4 _lightColor; //RGB for color, Alpha stores Brightness
+        public float _radius;
     }
 }

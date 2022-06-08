@@ -58,7 +58,7 @@ namespace Tyme_Engine.Types
             int normalLocation = meshShader.GetAttribLocation("aNormal");
             GL.VertexAttribPointer(normalLocation, 3, VertexAttribPointerType.Float, false, 8 * sizeof(float), 5 * sizeof(float));
             GL.EnableVertexAttribArray(normalLocation);
-            
+
             ElementBufferObject = GL.GenBuffer();
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, ElementBufferObject);
             GL.BufferData(BufferTarget.ElementArrayBuffer, indeciesCount * sizeof(uint), meshIndecies, BufferUsageHint.StaticDraw);
@@ -67,6 +67,7 @@ namespace Tyme_Engine.Types
             meshShader.SetInt("texture0", 0);
 
             meshShader.Use();
+            loadedMesh = null;
         }
 
         internal void RenderMesh(double deltaTime, Matrix4 projection, Matrix4 view, Matrix4 model)

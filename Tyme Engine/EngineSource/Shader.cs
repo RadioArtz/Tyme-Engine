@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-//fair warning, i have no clue wtf all of this does anymore but im gonna rewrite at some point so i actually do lol
+//fair warning, i have no clue wtf all of this does anymore but im gonna rewrite at some point so i actually do lol //no
 namespace Tyme_Engine.Rendering
 {
     public class Shader
@@ -153,6 +153,8 @@ namespace Tyme_Engine.Rendering
         /// <param name="data">The data to set</param>
         public void SetInt(string name, int data)
         {
+            if (!uniformLocations.ContainsKey(name))
+                return;
             GL.UseProgram(Handle);
             GL.Uniform1(uniformLocations[name], data);
         }
@@ -164,6 +166,8 @@ namespace Tyme_Engine.Rendering
         /// <param name="data">The data to set</param>
         public void SetFloat(string name, float data)
         {
+            if (!uniformLocations.ContainsKey(name))
+                return;
             GL.UseProgram(Handle);
             GL.Uniform1(uniformLocations[name], data);
         }
@@ -180,6 +184,8 @@ namespace Tyme_Engine.Rendering
         /// </remarks>
         public void SetMatrix4(string name, OpenTK.Matrix4 data)
         {
+            if (!uniformLocations.ContainsKey(name))
+                return;
             GL.UseProgram(Handle);
             GL.UniformMatrix4(uniformLocations[name], true, ref data);
         }
@@ -191,31 +197,18 @@ namespace Tyme_Engine.Rendering
         /// <param name="data">The data to set</param>
         public void SetVector3(string name, OpenTK.Vector3 data)
         {
-            //if (uniformLocations.ContainsKey(name))
-            //{
-            if (uniformLocations.ContainsKey(name))
-            {
-                GL.UseProgram(Handle);
-                GL.Uniform3(uniformLocations[name], data);
-            }
-            //}
-            //else
-            //{ 
-            //foreach(string str in uniformLocations.Keys)
-            //    {
-            //        Core.Debug.Log(str);
-            //    }
-            //}
-            
+            if (!uniformLocations.ContainsKey(name))
+                return;
+            GL.UseProgram(Handle);
+            GL.Uniform3(uniformLocations[name], data);
         }
 
         public void SetVector4(string name, OpenTK.Vector4 data)
         {
-            if (uniformLocations.ContainsKey(name))
-            {
-                GL.UseProgram(Handle);
-                GL.Uniform4(uniformLocations[name], data);
-            }
+            if (!uniformLocations.ContainsKey(name))
+                return;
+            GL.UseProgram(Handle);
+            GL.Uniform4(uniformLocations[name], data);
         }
         #endregion
     }
