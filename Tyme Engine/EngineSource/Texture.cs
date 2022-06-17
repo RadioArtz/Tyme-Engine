@@ -7,7 +7,7 @@ namespace Tyme_Engine.Rendering
     public class Texture
     {
         public int Handle;
-
+        
         public static Texture LoadFromFile(string texturepath, TextureMagFilter filterMode, TextureMinFilter mipmaps,int anisotropicSamples)
         {
             int handle = GL.GenTexture();
@@ -26,7 +26,7 @@ namespace Tyme_Engine.Rendering
             GL.GenerateTextureMipmap(handle);
             
             source.Dispose();
-
+            
             return t;
         }
 

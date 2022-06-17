@@ -7,6 +7,7 @@ using System.IO;
 using OpenTK;
 using Microsoft.VisualBasic;
 using System.Diagnostics;
+using OpenTK.Mathematics;
 
 namespace Tyme_Engine.Types
 {
@@ -67,7 +68,6 @@ namespace Tyme_Engine.Types
             meshShader.SetInt("texture0", 0);
 
             meshShader.Use();
-            loadedMesh = null;
         }
 
         internal void RenderMesh(double deltaTime, Matrix4 projection, Matrix4 view, Matrix4 model)

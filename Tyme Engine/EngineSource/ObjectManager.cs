@@ -30,7 +30,7 @@ namespace Tyme_Engine
 
         public static void DestroyObject(GameObject objectToDestroy)
         {
-            objectToDestroy = null;
+            //objectToDestroy = null;
         }
     }
 }
