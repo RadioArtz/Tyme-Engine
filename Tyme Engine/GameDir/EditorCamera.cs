@@ -48,7 +48,6 @@ namespace Tyme_Engine
             transcomp.transform.Rotation += new Vector3(-deltaY, deltaX, 0)*sensitivity;
             transcomp.transform.Rotation.X = MathHelper.Clamp(transcomp.transform.Rotation.X,-89.9f , 89.9f);
 
-            Core.Debug.Log("AAAAAAAAAAAAAAAAAA");
             if (keyboard.IsKeyDown(Keys.LeftShift))
             {
                 movespeed = delta * 25;
