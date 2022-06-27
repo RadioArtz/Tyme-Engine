@@ -14,8 +14,8 @@ namespace Tyme_Engine
 {
     class EditorCamera : UserScript
     {
-        private MouseState Mouse;
-        private KeyboardState keyboard;
+        private MouseState? Mouse;
+        private KeyboardState? keyboard;
         private EngineWindow _window;
         Vector2 lastPos;
 
@@ -37,7 +37,7 @@ namespace Tyme_Engine
             float deltaX = mouse.X - lastPos.X;
             float deltaY = mouse.Y - lastPos.Y;
             lastPos = new Vector2(mouse.X, mouse.Y);
-            Rendering.RenderInterface._hardcorelamp._radius = _window.MouseState.Scroll.Y;
+            Rendering.RenderInterface._hardcorelamp!._radius = _window.MouseState.Scroll.Y;
             if (!mouse.IsButtonDown(MouseButton.Right))
             {
                 _window.SetCursorGrabbed(CursorState.Normal);
