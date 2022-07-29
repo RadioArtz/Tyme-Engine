@@ -1,5 +1,7 @@
 ﻿using OpenTK;
 using System;
+using OpenTK.Mathematics;
+
 namespace Tyme_Engine.Types
 {
     [Serializable]

@@ -1,5 +1,6 @@
 ﻿using Tyme_Engine.Core;
 using OpenTK;
+using OpenTK.Mathematics;
 
 namespace Tyme_Engine.Components
 {

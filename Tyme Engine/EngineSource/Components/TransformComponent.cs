@@ -2,6 +2,7 @@
 using Tyme_Engine.Core;
 using OpenTK;
 using System;
+using OpenTK.Mathematics;
 
 namespace Tyme_Engine.Components
 {

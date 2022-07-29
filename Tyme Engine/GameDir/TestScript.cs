@@ -2,6 +2,9 @@
 using OpenTK;
 using System.Diagnostics;
 using OpenTK.Input;
+using OpenTK.Mathematics;
+using OpenTK.Windowing.GraphicsLibraryFramework;
+using OpenTK.Graphics;
 
 namespace Tyme_Engine
 {
@@ -24,7 +27,6 @@ namespace Tyme_Engine
         }
         public override void PreRender(float delta)
         {
-            KeyboardState input = Keyboard.GetState();
             Core.Debug.Log(Rendering.RenderInterface._hardcorelamp._radius);
             
             Rendering.RenderInterface._hardcorelamp._radius = MathHelper.Clamp(Rendering.RenderInterface._hardcorelamp._radius, 0, Rendering.RenderInterface._hardcorelamp._radius);

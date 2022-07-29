@@ -2,17 +2,17 @@
 using Tyme_Engine.Components;
 using Tyme_Engine.Core;
 using OpenTK;
-
+using OpenTK.Mathematics;
 namespace Tyme_Engine.Rendering
 {
     class RenderInterface
     {
         public static List<CameraComponent> _cameras { get; private set; } = new List<CameraComponent>();
-        public static CameraComponent _activeCamera { get; private set; }
+        public static CameraComponent? _activeCamera { get; private set; }
         public static int drawcalls { get; private set; }
         public static int verticies { get; private set; }
         public static int Faces { get; private set; }
-        public static PointLightComponent _hardcorelamp;
+        public static PointLightComponent? _hardcorelamp;
 
         public static void RenderStaticMeshes(double delta, Matrix4 projection)
         {
@@ -28,8 +28,8 @@ namespace Tyme_Engine.Rendering
                     drawcalls += obj._staticMeshComponent.subMeshes.Count;
                     foreach(Types.RuntimeStaticMesh mesh in obj._staticMeshComponent.subMeshes)
                     {
-                        //verticies += mesh.loadedMesh.Vertices.Count;
-                        //Faces += mesh.loadedMesh.FaceCount;
+                        verticies += mesh.loadedMesh.Vertices.Count;
+                        Faces += mesh.loadedMesh.FaceCount;
                     }
                 }
             }

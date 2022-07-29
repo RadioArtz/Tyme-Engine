@@ -1,18 +1,18 @@
 ﻿using Microsoft.VisualBasic;
-using OpenTK;
-using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
-using System;
 using System.Diagnostics;
 using Tyme_Engine.Components;
 using Tyme_Engine.IO;
 using Tyme_Engine.Rendering;
+using OpenTK.Windowing.Common;
+using OpenTK.Windowing.Desktop;
+using OpenTK.Mathematics;
 
 namespace Tyme_Engine.Core
 {
     class EngineWindow : GameWindow
     {
-        public EngineWindow(int width, int height, string title) : base(width, height, GraphicsMode.Default, title,GameWindowFlags.Default,DisplayDevice.Default,3,1,GraphicsContextFlags.ForwardCompatible)
+        public EngineWindow() : base(GameWindowSettings.Default,NativeWindowSettings.Default)
         {
         }
         private Matrix4 _projection;
@@ -20,19 +20,20 @@ namespace Tyme_Engine.Core
         private float _deltatime = 0.0f;
 
         #region WindowLoaded
-        protected override void OnLoad(EventArgs e)
+        protected override void OnLoad()
         {
-            base.OnLoad(e);
+            base.OnLoad();
             GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
             GL.Enable(EnableCap.DepthTest);
             GL.Enable(EnableCap.CullFace);
             //GL.Enable(EnableCap.FramebufferSrgb);
             GL.CullFace(CullFaceMode.Back);
             GL.FrontFace(FrontFaceDirection.Ccw);
-            Scene testScene = new Scene();
             GameObject cube = new GameObject("TestObject0");
             //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "C:/Users/mathi/Downloads/spnz/sponza.obj");
-            string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", System.IO.Path.Combine(Environment.CurrentDirectory, "EngineContent/Meshes/sponza.obj"));
+            //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", System.IO.Path.Combine(Environment.CurrentDirectory, "EngineContent/Meshes/sponza.obj"));
+            //string input = Path.Combine(Environment.CurrentDirectory, "EngineContent/Meshes/cube.fbx");
+            string input = "C:/Users/mathi/Documents/Sponza-master/Sponza-master/sponza.obj";
             //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "A:/Sponza/Main/Main/NewSponza_Main_FBX_YUp.fbx");
             //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", System.IO.Path.Combine(Environment.CurrentDirectory,"EngineContent/Meshes/cube.fbx"));
             //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", System.IO.Path.Combine(Environment.CurrentDirectory,"EngineContent/Meshes/shading_scene.fbx"));
@@ -68,13 +69,13 @@ namespace Tyme_Engine.Core
             ScriptManager.ScriptUpdate((_deltatime));
         }
         #endregion
-        public void SetShowMouseCursor(bool showCursor)
+        public void SetShowMouseCursor(CursorState showCursor)
         {
-            CursorVisible = showCursor;
+            CursorState = showCursor;
         }
-        public void SetCursorGrabbed(bool grabCursor)
+        public void SetCursorGrabbed(CursorState grabCursor)
         {
-            CursorGrabbed = grabCursor;
+            CursorState = grabCursor;
         }
 
         #region RenderTick
@@ -91,22 +92,21 @@ namespace Tyme_Engine.Core
         #endregion
 
         #region Resizing
-        protected override void OnResize(EventArgs e)
+        protected override void OnResize(ResizeEventArgs e)
         {
-            GL.Viewport(0, 0, Width, Height);
-            _projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(90.0f), (float)Width / Height, 0.1f, 1024);
+            GL.Viewport(0, 0, e.Width, e.Height);
+            _projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(90.0f), (float)e.Width / (float)e.Height, 0.1f, 1024);
             base.OnResize(e);
         }
         #endregion
-
         #region UnloadWindow
-        protected override void OnUnload(EventArgs e)
+        protected override void OnUnload()
         {
             foreach (GameObject obj in ObjectManager.GetAllObjects())
             {
                 obj.DestroyObject();
             }
-            base.OnUnload(e);
+            base.OnUnload();
         }
         #endregion
     }

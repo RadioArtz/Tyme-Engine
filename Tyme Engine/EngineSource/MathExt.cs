@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Numerics;
+//using System.Numerics;
+using OpenTK.Mathematics;
 
 namespace Tyme_Engine.Core
 {
@@ -49,10 +50,10 @@ namespace Tyme_Engine.Core
         /// </summary>
         /// <param name="rotationDeg"> Rotation in Degrees</param>
         /// <returns></returns>
-        public static OpenTK.Vector3 GetForwardVector(OpenTK.Vector3 rotationDeg)
+        public static OpenTK.Mathematics.Vector3 GetForwardVector(OpenTK.Mathematics.Vector3 rotationDeg)
         {
-            OpenTK.Vector3 rotRadians = (rotationDeg * (OpenTK.MathHelper.Pi / 180f));
-            OpenTK.Vector3 front;
+            OpenTK.Mathematics.Vector3 rotRadians = (rotationDeg * (MathHelper.Pi / 180f));
+            OpenTK.Mathematics.Vector3 front;
             front.X = (float)(Math.Cos(rotRadians.X)* Math.Cos(rotRadians.Y));
             front.Y = (float)Math.Sin(rotRadians.X);
             front.Z = (float)(Math.Cos(rotRadians.X) * Math.Sin(rotRadians.Y));
@@ -65,9 +66,9 @@ namespace Tyme_Engine.Core
         /// </summary>
         /// <param name="rotationDeg"> Rotation in Degrees</param>
         /// <returns></returns>
-        public static OpenTK.Vector3 GetRightVector(OpenTK.Vector3 rotationDeg)
+        public static OpenTK.Mathematics.Vector3 GetRightVector(OpenTK.Mathematics.Vector3 rotationDeg)
         {
-            return OpenTK.Vector3.Normalize(OpenTK.Vector3.Cross(GetForwardVector(rotationDeg), OpenTK.Vector3.UnitY));
+            return OpenTK.Mathematics.Vector3.Normalize(OpenTK.Mathematics.Vector3.Cross(GetForwardVector(rotationDeg), OpenTK.Mathematics.Vector3.UnitY));
         }
 
         /// <summary>
@@ -75,9 +76,9 @@ namespace Tyme_Engine.Core
         /// </summary>
         /// <param name="rotationDeg"> Rotation in Degrees</param>
         /// <returns></returns>
-        public static OpenTK.Vector3 GetUpVector(OpenTK.Vector3 rotationDeg)
+        public static OpenTK.Mathematics.Vector3 GetUpVector(OpenTK.Mathematics.Vector3 rotationDeg)
         {
-            return OpenTK.Vector3.Normalize(OpenTK.Vector3.Cross(GetRightVector(rotationDeg),GetForwardVector(rotationDeg)));
+            return OpenTK.Mathematics.Vector3.Normalize(OpenTK.Mathematics.Vector3.Cross(GetRightVector(rotationDeg),GetForwardVector(rotationDeg)));
         }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using OpenTK.Mathematics;
 
 //fair warning, i have no clue wtf all of this does anymore but im gonna rewrite at some point so i actually do lol //no
 namespace Tyme_Engine.Rendering
@@ -182,7 +183,7 @@ namespace Tyme_Engine.Rendering
         ///   The matrix is transposed before being sent to the shader.
         ///   </para>
         /// </remarks>
-        public void SetMatrix4(string name, OpenTK.Matrix4 data)
+        public void SetMatrix4(string name, Matrix4 data)
         {
             if (!uniformLocations.ContainsKey(name))
                 return;
@@ -195,7 +196,7 @@ namespace Tyme_Engine.Rendering
         /// </summary>
         /// <param name="name">The name of the uniform</param>
         /// <param name="data">The data to set</param>
-        public void SetVector3(string name, OpenTK.Vector3 data)
+        public void SetVector3(string name, Vector3 data)
         {
             if (!uniformLocations.ContainsKey(name))
                 return;
@@ -203,7 +204,7 @@ namespace Tyme_Engine.Rendering
             GL.Uniform3(uniformLocations[name], data);
         }
 
-        public void SetVector4(string name, OpenTK.Vector4 data)
+        public void SetVector4(string name, Vector4 data)
         {
             if (!uniformLocations.ContainsKey(name))
                 return;

@@ -1,13 +1,21 @@
 ﻿using Tyme_Engine.Core;
 using OpenTK;
 using OpenTK.Input;
+using OpenTK.Mathematics;
+using OpenTK.Input.Hid;
+using OpenTK.Windowing.Common.Input;
+using OpenTK.Windowing.GraphicsLibraryFramework;
+using System;
+using OpenTK.Graphics.OpenGL4;
+using OpenTK.Windowing.Common;
+using OpenTK.Windowing.Desktop;
 
 namespace Tyme_Engine
 {
     class EditorCamera : UserScript
     {
-        private MouseState mouse;
-        private KeyboardState keyboard;
+        private MouseState? Mouse;
+        private KeyboardState? keyboard;
         private EngineWindow _window;
         Vector2 lastPos;
 
@@ -20,8 +28,8 @@ namespace Tyme_Engine
         }
         public override void PreRender(float delta)
         {
-            mouse = Mouse.GetState();
-            keyboard = Keyboard.GetState();
+            var mouse = _window.MouseState;
+            var keyboard = _window.KeyboardState;
             var transcomp = parentObject._transformComponent;
             var movespeed = delta*4;
             var sensitivity = .1f;
@@ -29,45 +37,42 @@ namespace Tyme_Engine
             float deltaX = mouse.X - lastPos.X;
             float deltaY = mouse.Y - lastPos.Y;
             lastPos = new Vector2(mouse.X, mouse.Y);
-            Rendering.RenderInterface._hardcorelamp._radius = mouse.ScrollWheelValue;
+            Rendering.RenderInterface._hardcorelamp!._radius = _window.MouseState.Scroll.Y;
             if (!mouse.IsButtonDown(MouseButton.Right))
             {
-                _window.SetCursorGrabbed(false);
-                _window.SetShowMouseCursor(true);
+                _window.SetCursorGrabbed(CursorState.Normal);
                 return;
             }
-
-            _window.SetCursorGrabbed(true);
-            _window.SetShowMouseCursor(false);
+            
+            _window.SetCursorGrabbed(CursorState.Grabbed);
             transcomp.transform.Rotation += new Vector3(-deltaY, deltaX, 0)*sensitivity;
             transcomp.transform.Rotation.X = MathHelper.Clamp(transcomp.transform.Rotation.X,-89.9f , 89.9f);
-            
 
-            if (keyboard.IsKeyDown(Key.ShiftLeft))
+            if (keyboard.IsKeyDown(Keys.LeftShift))
             {
                 movespeed = delta * 25;
             }
-            if (keyboard.IsKeyDown(Key.D))
+            if (keyboard.IsKeyDown(Keys.D))
             {
                 transcomp.transform.Location += MathExt.GetRightVector(transcomp.transform.Rotation) * movespeed;
             }
-            if (keyboard.IsKeyDown(Key.A))
+            if (keyboard.IsKeyDown(Keys.A))
             {
                 transcomp.transform.Location += MathExt.GetRightVector(transcomp.transform.Rotation) * -movespeed;
             }
-            if (keyboard.IsKeyDown(Key.S))
+            if (keyboard.IsKeyDown(Keys.S))
             {
                 transcomp.transform.Location += MathExt.GetForwardVector(transcomp.transform.Rotation)*-movespeed;
             }
-            if (keyboard.IsKeyDown(Key.W))
+            if (keyboard.IsKeyDown(Keys.W))
             {
                 transcomp.transform.Location += MathExt.GetForwardVector(transcomp.transform.Rotation) * movespeed;
             }
-            if (keyboard.IsKeyDown(Key.E))
+            if (keyboard.IsKeyDown(Keys.E))
             {
                 transcomp.transform.Location += MathExt.GetUpVector(transcomp.transform.Rotation) * movespeed;
             }
-            if (keyboard.IsKeyDown(Key.Q))
+            if (keyboard.IsKeyDown(Keys.Q))
             {
                 transcomp.transform.Location += MathExt.GetUpVector(transcomp.transform.Rotation) * -movespeed;
             }

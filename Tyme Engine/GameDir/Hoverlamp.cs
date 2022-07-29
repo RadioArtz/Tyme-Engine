@@ -3,6 +3,7 @@ using OpenTK;
 using System.Diagnostics;
 using OpenTK.Input;
 using System;
+using OpenTK.Mathematics;
 
 namespace Tyme_Engine
 {

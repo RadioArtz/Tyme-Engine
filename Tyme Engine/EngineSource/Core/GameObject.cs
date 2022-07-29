@@ -48,7 +48,6 @@ namespace Tyme_Engine.Core
         public void RemoveComponent(int indexToRemove)
         {
             childComponents[indexToRemove].OnComponentDestroyed();
-            childComponents[indexToRemove] = null;
             childComponents.RemoveAt(indexToRemove);
         }
 
