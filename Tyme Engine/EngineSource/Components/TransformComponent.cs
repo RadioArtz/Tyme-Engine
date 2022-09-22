@@ -7,7 +7,7 @@ using OpenTK.Mathematics;
 namespace Tyme_Engine.Components
 {
     [Serializable]
-    class TransformComponent : Component
+    public class TransformComponent : Component
     {
         public Transform transform;
 

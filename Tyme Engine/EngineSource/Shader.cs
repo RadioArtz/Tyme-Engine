@@ -10,12 +10,13 @@ namespace Tyme_Engine.Rendering
 {
     public class Shader
     {
-        public int Handle { get; private set; }
+        public int _Handle { get; private set; }
         private readonly Dictionary<string, int> uniformLocations;
         private bool disposedValue = false;
 
         public Shader(string vertexPath, string fragmentPath)
         {
+            
             //define shader paths
             string VertexShaderSource;
             string FragmentShaderSource;
@@ -23,7 +24,7 @@ namespace Tyme_Engine.Rendering
             //create shaders and define Type
             int VertexShader = GL.CreateShader(ShaderType.VertexShader);
             int FragmentShader = GL.CreateShader(ShaderType.FragmentShader);
-
+            
             //load shadercode and store in variable
             using (StreamReader reader = new StreamReader(vertexPath, Encoding.UTF8))
             {
@@ -53,45 +54,47 @@ namespace Tyme_Engine.Rendering
                 System.Console.WriteLine(infoLogFrag);
 
             //Link Shaders
-            Handle = GL.CreateProgram();
+            _Handle = GL.CreateProgram();
 
-            GL.AttachShader(Handle, VertexShader);
-            GL.AttachShader(Handle, FragmentShader);
+            GL.AttachShader(_Handle, VertexShader);
+            GL.AttachShader(_Handle, FragmentShader);
 
-            GL.LinkProgram(Handle);
+            GL.LinkProgram(_Handle);
 
             //Cleanup
-            GL.DetachShader(Handle, VertexShader);
-            GL.DetachShader(Handle, FragmentShader);
+            GL.DetachShader(_Handle, VertexShader);
+            GL.DetachShader(_Handle, FragmentShader);
             GL.DeleteShader(FragmentShader);
             GL.DeleteShader(VertexShader);
 
             // Additional useful shit
             // First, we have to get the number of active uniforms in the shader.
-            GL.GetProgram(Handle, GetProgramParameterName.ActiveUniforms, out var numberOfUniforms);
+            GL.GetProgram(_Handle, GetProgramParameterName.ActiveUniforms, out var numberOfUniforms);
             // Next, allocate the dictionary to hold the locations.
             uniformLocations = new Dictionary<string, int>();
-            Core.Debug.Log("List all uniforms in shader");
+
+            //Core.Debug.Log("List all uniforms in shader");
+
             // Loop over all the uniforms,
             for (var i = 0; i < numberOfUniforms; i++)
             {
                 // get the name of this uniform,
-                var key = GL.GetActiveUniform(Handle, i, out _, out _);
+                var key = GL.GetActiveUniform(_Handle, i, out _, out _);
 
                 // get the location,
-                var location = GL.GetUniformLocation(Handle, key);
+                var location = GL.GetUniformLocation(_Handle, key);
 
                 // and then add it to the dictionary.
                 uniformLocations.Add(key, location);
-                Core.Debug.Log((key, location));
+                //Core.Debug.Log((key, location));
             }
+            Core.Debug.Log("Creating Shader " + _Handle, ConsoleColor.Black, ConsoleColor.White);
         }
 
         private static void CompileShader(int shader)
         {
             // Try to compile the shader
             GL.CompileShader(shader);
-
             // Check for compilation errors
             GL.GetShader(shader, ShaderParameter.CompileStatus, out var code);
             if (code != (int)All.True)
@@ -104,7 +107,7 @@ namespace Tyme_Engine.Rendering
 
         public void Use()
         {
-            GL.UseProgram(Handle);
+            GL.UseProgram(_Handle);
         }
 
         //final cleanup
@@ -112,23 +115,23 @@ namespace Tyme_Engine.Rendering
         {
             if (!disposedValue)
             {
-                if(Handle!=-1)
-                GL.DeleteProgram(Handle);
-                Handle = -1;
+                if(_Handle!=-1)
+                GL.DeleteProgram(_Handle);
+                _Handle = -1;
                 disposedValue = true;
             }
         }
 
         ~Shader()
         {
-            if(Handle!=-1)
-            GL.DeleteProgram(Handle);
-            Handle = -1;
+            if(_Handle!=-1)
+            GL.DeleteProgram(_Handle);
+            _Handle = -1;
         }
 
         public int GetAttribLocation(string attribName)
         {
-            return GL.GetAttribLocation(Handle, attribName);
+            return GL.GetAttribLocation(_Handle, attribName);
         }
 
         public void Dispose()
@@ -156,7 +159,7 @@ namespace Tyme_Engine.Rendering
         {
             if (!uniformLocations.ContainsKey(name))
                 return;
-            GL.UseProgram(Handle);
+            GL.UseProgram(_Handle);
             GL.Uniform1(uniformLocations[name], data);
         }
 
@@ -169,7 +172,7 @@ namespace Tyme_Engine.Rendering
         {
             if (!uniformLocations.ContainsKey(name))
                 return;
-            GL.UseProgram(Handle);
+            GL.UseProgram(_Handle);
             GL.Uniform1(uniformLocations[name], data);
         }
 
@@ -187,7 +190,7 @@ namespace Tyme_Engine.Rendering
         {
             if (!uniformLocations.ContainsKey(name))
                 return;
-            GL.UseProgram(Handle);
+            GL.UseProgram(_Handle);
             GL.UniformMatrix4(uniformLocations[name], true, ref data);
         }
 
@@ -200,7 +203,7 @@ namespace Tyme_Engine.Rendering
         {
             if (!uniformLocations.ContainsKey(name))
                 return;
-            GL.UseProgram(Handle);
+            GL.UseProgram(_Handle);
             GL.Uniform3(uniformLocations[name], data);
         }
 
@@ -208,7 +211,7 @@ namespace Tyme_Engine.Rendering
         {
             if (!uniformLocations.ContainsKey(name))
                 return;
-            GL.UseProgram(Handle);
+            GL.UseProgram(_Handle);
             GL.Uniform4(uniformLocations[name], data);
         }
         #endregion

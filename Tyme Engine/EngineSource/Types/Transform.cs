@@ -5,7 +5,7 @@ using OpenTK.Mathematics;
 namespace Tyme_Engine.Types
 {
     [Serializable]
-    struct Transform
+    public struct Transform
     {
         public Vector3 Location;
         public Vector3 Rotation;

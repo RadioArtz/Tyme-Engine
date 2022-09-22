@@ -3,13 +3,14 @@
 namespace Tyme_Engine.Core
 {
     [Serializable]
-    class Component
+    public class Component : TObject
     {
         internal GameObject _parentObject;
         public GameObject parentObject { get => _parentObject; }
 
         public Component()
         {
+            
         }
         public virtual void OnComponentAttached(GameObject parentObject)
         {

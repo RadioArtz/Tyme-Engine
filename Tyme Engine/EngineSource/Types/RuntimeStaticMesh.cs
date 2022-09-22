@@ -11,7 +11,7 @@ using OpenTK.Mathematics;
 
 namespace Tyme_Engine.Types
 {
-    class RuntimeStaticMesh 
+    public class RuntimeStaticMesh 
     {
         //later replace this for a refference to the mesh in assetmanager
         [NonSerialized]

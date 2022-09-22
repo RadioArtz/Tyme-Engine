@@ -7,6 +7,7 @@ using Tyme_Engine.Rendering;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Mathematics;
+using ImGuiNET;
 
 namespace Tyme_Engine.Core
 {
@@ -29,35 +30,9 @@ namespace Tyme_Engine.Core
             //GL.Enable(EnableCap.FramebufferSrgb);
             GL.CullFace(CullFaceMode.Back);
             GL.FrontFace(FrontFaceDirection.Ccw);
-            GameObject cube = new GameObject("TestObject0");
-            //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "C:/Users/mathi/Downloads/spnz/sponza.obj");
-            //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", System.IO.Path.Combine(Environment.CurrentDirectory, "EngineContent/Meshes/sponza.obj"));
-            //string input = Path.Combine(Environment.CurrentDirectory, "EngineContent/Meshes/cube.fbx");
-            string input = "C:/Users/mathi/Documents/Sponza-master/Sponza-master/sponza.obj";
-            //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "A:/Sponza/Main/Main/NewSponza_Main_FBX_YUp.fbx");
-            //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", System.IO.Path.Combine(Environment.CurrentDirectory,"EngineContent/Meshes/cube.fbx"));
-            //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", System.IO.Path.Combine(Environment.CurrentDirectory,"EngineContent/Meshes/shading_scene.fbx"));
-            //string input = Interaction.InputBox("Enter Mesh file path", "Open Mesh", "C:/Users/mathi/Documents/sphere.fbx");
-            GameObject camera = new GameObject("MainCamera");
-            GameObject gameObject = new GameObject("pimel");
-
-            gameObject.AddComponent(new TransformComponent());
-            gameObject.AddComponent(new PointLightComponent());
-            gameObject._transformComponent.transform.Location = new Vector3(0, 2, 0);
-            gameObject.AddComponent(new Hoverlamp(1));
-
-            camera.AddComponent(new TransformComponent());
-            camera.AddComponent(new CameraComponent());
-            camera.AddComponent(new EditorCamera(this));
-            //camera.AddComponent(new PointLightComponent());
-            
-            cube.AddComponent(new StaticMeshComponent(AssetImporter.LoadMeshSync(input)));
-            cube.AddComponent(new TransformComponent());
-            cube.AddComponent(new TestScript(1));
-
-            //testScene.SaveScene();
-            //testScene.OpenScene();
             _deltaCalc.Start();
+            //_uiController = new ImGuiController();
+            TestScene testScn = new TestScene(this);
         }
         #endregion  
 

@@ -15,7 +15,9 @@ namespace Tyme_Engine
         public override void Start()
         {
             _timer.Start();
+            int rand = new Random().Next(8)-4;
             this.parentObject._transformComponent.transform.Scale = new Vector3(.1f);
+            this.parentObject._transformComponent.transform.Location = new Vector3(0, 0, 0);
         }
         public TestScript(float direction)
         {
@@ -27,9 +29,7 @@ namespace Tyme_Engine
         }
         public override void PreRender(float delta)
         {
-            Core.Debug.Log(Rendering.RenderInterface._hardcorelamp._radius);
-            
-            Rendering.RenderInterface._hardcorelamp._radius = MathHelper.Clamp(Rendering.RenderInterface._hardcorelamp._radius, 0, Rendering.RenderInterface._hardcorelamp._radius);
+                Rendering.RenderInterface._hardcorelamp._radius = MathHelper.Clamp(Rendering.RenderInterface._hardcorelamp._radius, 0, Rendering.RenderInterface._hardcorelamp._radius);
                 parentObject._staticMeshComponent.meshShader.SetVector3("DiffuseColor", new Vector3(1f, 1f, 1f));
                 parentObject._staticMeshComponent.meshShader.SetVector3("SpecularColor", new Vector3(0.125f, 0.125f, 0.125f));
                 parentObject._staticMeshComponent.meshShader.SetVector4("LightColor", Rendering.RenderInterface._hardcorelamp._lightColor);

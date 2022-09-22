@@ -5,27 +5,27 @@ namespace Tyme_Engine
 {
     static class ObjectManager
     {
-        public static List<GameObject> objectBuffer { get;  set; } = new List<GameObject>();
+        public static List<GameObject> GameObjects { get;  set; } = new List<GameObject>();
 
         public static void AddObject(GameObject objectToAdd)
         {
-            objectBuffer.Add(objectToAdd);
+            GameObjects.Add(objectToAdd);
         }
 
         public static void RemoveObject(GameObject objectToRemove)
         {
-            objectBuffer.Remove(objectToRemove);
+            GameObjects.Remove(objectToRemove);
         }
 
         public static void RemoveObject(int indexToRemove)
         {
-            objectBuffer.RemoveAt(indexToRemove);
-            objectBuffer[indexToRemove].DestroyObject();
+            GameObjects.RemoveAt(indexToRemove);
+            GameObjects[indexToRemove].DestroyObject();
         }
 
         public static List<GameObject> GetAllObjects()
         {
-            return objectBuffer;
+            return GameObjects;
         }
 
         public static void DestroyObject(GameObject objectToDestroy)

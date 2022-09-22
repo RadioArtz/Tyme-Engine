@@ -30,6 +30,32 @@ namespace Tyme_Engine.Rendering
             return t;
         }
 
+        public static Texture LoadFromMesh(string path, Assimp.Scene assimpScene, int materialIndex, TextureMagFilter filterMode, TextureMinFilter mipmaps, int anisotropicSamples)
+        {
+            int handle = GL.GenTexture();
+            Texture t = new Texture(handle);
+            GL.BindTexture(TextureTarget.Texture2D, handle);
+            string src = Path.Combine(path, assimpScene.Materials[materialIndex].TextureDiffuse.FilePath);
+            Core.Debug.Log("Loaded Texture from "+src,ConsoleColor.Green);
+            Core.Debug.Log("Material Index "+materialIndex,ConsoleColor.Magenta);
+            Bitmap source = new Bitmap(src);
+
+            source.RotateFlip(RotateFlipType.RotateNoneFlipY);
+            BitmapData data = source.LockBits(new Rectangle(0, 0, source.Width, source.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, data.Width, data.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
+            source.UnlockBits(data);
+
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)mipmaps);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)filterMode);
+            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.DetailTextureModeSgis, (int)TextureParameterName.DetailTextureModeSgis);
+            GL.TexParameter(TextureTarget.Texture2D, (TextureParameterName)All.TextureMaxAnisotropy, anisotropicSamples);
+            GL.GenerateTextureMipmap(handle);
+
+            source.Dispose();
+
+            return t;
+        }
+
         public void Use(TextureUnit unit)
         {
             GL.ActiveTexture(unit);

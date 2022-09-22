@@ -19,6 +19,11 @@ namespace Tyme_Engine.Rendering
             drawcalls = 0;
             verticies = 0;
             Faces = 0;
+            if (_activeCamera == null)
+            {
+                Debug.Log("No Camera");
+                return;
+            }
             _activeCamera.UpdateViewMatrix();
             foreach(GameObject obj in ObjectManager.GetAllObjects())
             {

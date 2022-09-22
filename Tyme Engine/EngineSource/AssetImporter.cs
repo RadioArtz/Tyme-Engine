@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Assimp;
+using System;
 
 namespace Tyme_Engine.IO
 {
@@ -9,8 +10,18 @@ namespace Tyme_Engine.IO
         public static Assimp.Scene LoadMeshSync(string path)
         {
             var assimpContext = new AssimpContext();
-            var assimpScene = assimpContext.ImportFile(path,PostProcessSteps.GenerateNormals |  PostProcessSteps.GenerateUVCoords | PostProcessSteps.Triangulate | PostProcessSteps.PreTransformVertices | PostProcessSteps.FindInvalidData |PostProcessSteps.OptimizeMeshes | PostProcessSteps.ImproveCacheLocality | PostProcessSteps.JoinIdenticalVertices);
-            return assimpScene;
+            var assimpScene = assimpContext.ImportFile(path,PostProcessSteps.GenerateNormals |  PostProcessSteps.GenerateUVCoords | PostProcessSteps.Triangulate | PostProcessSteps.FindInvalidData |PostProcessSteps.OptimizeMeshes | PostProcessSteps.ImproveCacheLocality | PostProcessSteps.JoinIdenticalVertices);
+            int test = AssetManager.RegisterAsset(assimpScene, assimpScene.RootNode.Name, AssetManager.AssetType.Mesh);
+            return (Assimp.Scene)AssetManager.assets[test].Asset_data;
+           
+        }
+        public static int LoadMeshSyncInt(string path)
+        {
+            Core.Debug.Log("Loading Mesh from " + path, ConsoleColor.Black, ConsoleColor.Gray);
+            var assimpContext = new AssimpContext();
+            var assimpScene = assimpContext.ImportFile(path, PostProcessSteps.GenerateNormals | PostProcessSteps.GenerateUVCoords | PostProcessSteps.Triangulate | PostProcessSteps.FindInvalidData | PostProcessSteps.OptimizeMeshes | PostProcessSteps.ImproveCacheLocality | PostProcessSteps.JoinIdenticalVertices);
+            int test = AssetManager.RegisterAsset(assimpScene, assimpScene.RootNode.Name, AssetManager.AssetType.Mesh);
+            return test;
         }
 
         public static float[] ConvertVertecies(Mesh inAssimpMesh,bool b_IncludeTexCoords, bool b_IncludeNormals, int uvChannel)
