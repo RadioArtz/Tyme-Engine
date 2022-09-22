@@ -21,7 +21,7 @@ namespace Tyme_Engine.Rendering
             Faces = 0;
             if (_activeCamera == null)
             {
-                Debug.Log("No Camera");
+                Debug.Log("No camera in scene");
                 return;
             }
             _activeCamera.UpdateViewMatrix();

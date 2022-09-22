@@ -32,6 +32,8 @@ namespace Tyme_Engine.Rendering
 
         public static Texture LoadFromMesh(string path, Assimp.Scene assimpScene, int materialIndex, TextureMagFilter filterMode, TextureMinFilter mipmaps, int anisotropicSamples)
         {
+            if (assimpScene.Materials[materialIndex].TextureDiffuse.FilePath == null)
+                return LoadFromFile(Path.Combine(Environment.CurrentDirectory, "EngineContent/Textures/T_MissingTexture.png"),TextureMagFilter.Nearest,TextureMinFilter.NearestMipmapNearest,16);
             int handle = GL.GenTexture();
             Texture t = new Texture(handle);
             GL.BindTexture(TextureTarget.Texture2D, handle);

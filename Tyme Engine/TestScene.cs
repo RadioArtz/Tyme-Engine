@@ -23,11 +23,11 @@ namespace Tyme_Engine
         public void CreateScene()
         {
             GameObject cube;// = new GameObject("TestObject0");
-            string input = "A:/scp_room_1/scene.gltf";
-            //string input = Path.Combine(Environment.CurrentDirectory, "EngineContent/Meshes/shading_scene.fbx");
+            //string input = "A:/scp_room_1/scene.gltf";
+            string input = Path.Combine(Environment.CurrentDirectory, "EngineContent/Meshes/shading_scene.fbx");
 
             GameObject camera = new GameObject("MainCamera");
-            GameObject gameObject = new GameObject("pimel");
+            GameObject gameObject = new GameObject("lightObject");
             gameObject.AddComponent(new TransformComponent());
             gameObject.AddComponent(new PointLightComponent());
             gameObject._transformComponent.transform.Location = new Vector3(0, 2, 0);
