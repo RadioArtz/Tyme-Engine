@@ -3,5 +3,5 @@ A (bad), (sort of) component based C# Game Engine, using OpenTK for Rendering, a
 
 After Cloning, open the solution file, right click on the solution and hit restore NuGet Packages. this should fix the issue
 
-![image](https://user-images.githubusercontent.com/54477532/181806247-7e558509-ed99-4af0-b173-60ee496474ff.png)
 
+![tyme_renderupdate](https://user-images.githubusercontent.com/54477532/191886550-1609b293-8787-4b38-b104-5b63094ad3f1.png)
