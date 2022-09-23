@@ -81,6 +81,7 @@ namespace Tyme_Engine.Types
             meshShader.SetMatrix4("model", model);
             meshShader.SetMatrix4("view", view);
             meshShader.SetMatrix4("projection", projection);
+            texture1.Use(TextureUnit.Texture0);
             meshShader.Use();
             GL.DrawElements(PrimitiveType.Triangles, indeciesCount, DrawElementsType.UnsignedInt, 0);
         }

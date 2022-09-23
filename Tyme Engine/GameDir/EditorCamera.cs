@@ -114,9 +114,20 @@ namespace Tyme_Engine
                         if(comp.GetType() == typeof(Components.StaticMeshComponent))
                         {
                             Debug.Log("found StaticMeshComponent with texture index " + ((Components.StaticMeshComponent)comp).texture1.Handle + " ");
-                            return;
                         }
-                        Console.WriteLine(comp.GetType().ToString()+" ");
+                        //Console.WriteLine(comp.GetType().ToString()+" ");
+                    }
+                }
+            }
+
+            if (Keyboard.IsKeyPressed(Keys.F3))
+            {
+                foreach (GameObject obj in ObjectManager.GameObjects)
+                {
+                    foreach(Component comp in obj.childComponents)
+                    {
+                        if (comp.GetType() == typeof(Components.StaticMeshComponent))
+                            Debug.Log("Texture on static mesh with path " + obj._staticMeshComponent.texture1.m_path, ConsoleColor.DarkYellow);
                     }
                 }
             }

@@ -19,7 +19,7 @@ namespace Tyme_Engine.IO
         {
             Core.Debug.Log("Loading Mesh from " + path, ConsoleColor.Black, ConsoleColor.Gray);
             var assimpContext = new AssimpContext();
-            var assimpScene = assimpContext.ImportFile(path, PostProcessSteps.GenerateNormals | PostProcessSteps.GenerateUVCoords | PostProcessSteps.Triangulate | PostProcessSteps.FindInvalidData | PostProcessSteps.OptimizeMeshes | PostProcessSteps.ImproveCacheLocality | PostProcessSteps.JoinIdenticalVertices);
+            var assimpScene = assimpContext.ImportFile(path,PostProcessSteps.GenerateNormals | PostProcessSteps.GenerateUVCoords | PostProcessSteps.Triangulate | PostProcessSteps.FindInvalidData | PostProcessSteps.OptimizeMeshes | PostProcessSteps.ImproveCacheLocality | PostProcessSteps.JoinIdenticalVertices);
             int test = AssetManager.RegisterAsset(assimpScene, assimpScene.RootNode.Name, AssetManager.AssetType.Mesh);
             return test;
         }

@@ -23,7 +23,7 @@ namespace Tyme_Engine
         public void CreateScene()
         {
             GameObject cube;// = new GameObject("TestObject0");
-            //string input = "A:/scp_room_1/scene.gltf";
+            //string input = "C:/Users/mathi/Documents/Sponza-master/Sponza-master/sponza.obj";
             string input = Path.Combine(Environment.CurrentDirectory, "EngineContent/Meshes/shading_scene.fbx");
 
             GameObject camera = new GameObject("MainCamera");

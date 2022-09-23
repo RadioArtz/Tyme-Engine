@@ -15,6 +15,10 @@ uniform float radius;
 
 void main()
 {
+	vec4 texture1Sample = texture(texture0,texCoord);
+	if(texture1Sample.a <0.1)
+		discard;
+
 	vec3 _LightCol = vec3(LightColor)*LightColor.w;						//using the W component of the Light color to scale brightness
 
 	vec3 norm = normalize(Normal);
@@ -37,8 +41,9 @@ void main()
 	
 
 	//vec3 result = ((vec3(texture(texture0,texCoord)))*DiffuseColor) * diffResult + specular + AmbientColor;	//old surface shader
-	vec3 result = vec3(texture(texture0,texCoord))*(DiffuseColor*(diffResult*falloff)+AmbientColor)+specular;	//with attenuation
+	vec3 result = vec3(texture1Sample)*(DiffuseColor*(diffResult*falloff)+AmbientColor)+specular;	//with attenuation
 	//vec3 result = vec3(texture(texture0,texCoord))*(DiffuseColor*(diffResult)+AmbientColor)+specular;			//no attenuation
-	//vec3 result = vec3(falloff);
+	//vec3 result = vec3(DiffuseColor*(diffResult*falloff)+AmbientColor)+specular;
+	//vec3 result = vec3(diffResult);
 	FragColor = vec4(result,1);
 }

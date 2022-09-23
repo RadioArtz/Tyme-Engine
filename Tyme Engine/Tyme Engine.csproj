@@ -92,6 +92,9 @@
     <None Update="EngineContent\Textures\T_MissingTexture.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="EngineContent\Textures\T_MissingTexture2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

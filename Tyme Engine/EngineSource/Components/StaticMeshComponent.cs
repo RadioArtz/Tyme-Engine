@@ -24,7 +24,7 @@ namespace Tyme_Engine.Components
             string input = Interaction.InputBox("Enter Texture file path", "Open Texture", Path.Combine(Environment.CurrentDirectory, "EngineContent/Textures/kenney_prototypetextures_png/Dark/texture_03.png"));
             //string input = Path.Combine(Environment.CurrentDirectory, "EngineContent/Textures/kenney_prototypetextures_png/Dark/texture_03.png");
             //string input = "C:/Users/mathi/Documents/minkra/2/minicraf-RGB.png";
-            texture1 = Texture.LoadFromFile(input,TextureMagFilter.Nearest,TextureMinFilter.LinearMipmapNearest,16);
+            texture1 = Texture.LoadFromFile(input,TextureMagFilter.Linear,TextureMinFilter.LinearMipmapNearest,16);
             AssetManager.RegisterAsset(texture1, "texture_03.png", AssetManager.AssetType.Texture);
             meshShader = new Shader(Path.Combine(Environment.CurrentDirectory, "EngineContent/Shaders/shader.vert"), Path.Combine(Environment.CurrentDirectory, "EngineContent/Shaders/lit.frag"));
             

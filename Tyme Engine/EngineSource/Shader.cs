@@ -88,7 +88,7 @@ namespace Tyme_Engine.Rendering
                 uniformLocations.Add(key, location);
                 //Core.Debug.Log((key, location));
             }
-            Core.Debug.Log("Creating Shader " + _Handle, ConsoleColor.Black, ConsoleColor.White);
+            Core.Debug.Log("Creating Shader " + _Handle, ConsoleColor.Blue);
         }
 
         private static void CompileShader(int shader)
