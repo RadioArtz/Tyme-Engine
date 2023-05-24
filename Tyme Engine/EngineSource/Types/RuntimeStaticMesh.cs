@@ -27,6 +27,7 @@ namespace Tyme_Engine.Types
         private int indeciesCount;
         [NonSerialized]
         public Texture texture1;
+        private bool destroyLock;
 
         public RuntimeStaticMesh(Assimp.Mesh assimpMesh, Texture tex, Shader inshader)
         {
@@ -68,10 +69,15 @@ namespace Tyme_Engine.Types
             meshShader.SetInt("texture0", 0);
 
             meshShader.Use();
+            //assimpMesh = null;
+            //loadedMesh = null;
         }
 
         internal void RenderMesh(double deltaTime, Matrix4 projection, Matrix4 view, Matrix4 model)
         {
+            if (destroyLock)
+                return;
+
             GL.BindVertexArray(VertexArrayObject);
             if (meshShader == null)
             {
@@ -84,10 +90,13 @@ namespace Tyme_Engine.Types
             texture1.Use(TextureUnit.Texture0);
             meshShader.Use();
             GL.DrawElements(PrimitiveType.Triangles, indeciesCount, DrawElementsType.UnsignedInt, 0);
+            //GL.MultiDrawArrays(BeginMode.Triangles,)
         }
 
         public void OnDestroyed()
         {
+            destroyLock = true;
+                
             GL.DeleteBuffer(VertexBufferObject);
             GL.DeleteBuffer(VertexArrayObject);
             GL.DeleteBuffer(ElementBufferObject);

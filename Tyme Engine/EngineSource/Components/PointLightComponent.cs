@@ -13,7 +13,7 @@ namespace Tyme_Engine.Components
         public PointLightComponent()
         {
             _lightColor = new Vector4(1, 1, 1, 1);
-            _radius = 24f;
+            _radius = 16f;
         }
     }
 }

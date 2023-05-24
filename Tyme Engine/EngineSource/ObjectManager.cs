@@ -15,6 +15,7 @@ namespace Tyme_Engine
         public static void RemoveObject(GameObject objectToRemove)
         {
             GameObjects.Remove(objectToRemove);
+           
         }
 
         public static void RemoveObject(int indexToRemove)
@@ -30,7 +31,12 @@ namespace Tyme_Engine
 
         public static void DestroyObject(GameObject objectToDestroy)
         {
-            //objectToDestroy = null;
+            foreach(Component comp in objectToDestroy.childComponents)
+            {
+                comp.OnComponentDestroyed();
+            }
+            GameObjects.Remove(objectToDestroy);
+            objectToDestroy = null;
         }
     }
 }

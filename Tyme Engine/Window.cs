@@ -13,7 +13,8 @@ namespace Tyme_Engine.Core
 {
     class EngineWindow : GameWindow
     {
-        public EngineWindow() : base(GameWindowSettings.Default,NativeWindowSettings.Default)
+        
+        public EngineWindow(NativeWindowSettings settings) : base(GameWindowSettings.Default,settings)
         {
         }
         private Matrix4 _projection;
@@ -27,11 +28,14 @@ namespace Tyme_Engine.Core
             GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
             GL.Enable(EnableCap.DepthTest);
             GL.Enable(EnableCap.CullFace);
-            //GL.Enable(EnableCap.FramebufferSrgb);
+            GL.Enable(EnableCap.Multisample);
+            GL.Enable(EnableCap.FramebufferSrgb);
+            
             GL.CullFace(CullFaceMode.Back);
             GL.FrontFace(FrontFaceDirection.Ccw);
             _deltaCalc.Start();
             //_uiController = new ImGuiController();
+            //Debug.Log(GL.GetString(StringName.Version));
             TestScene testScn = new TestScene(this);
         }
         #endregion  
@@ -70,17 +74,17 @@ namespace Tyme_Engine.Core
         protected override void OnResize(ResizeEventArgs e)
         {
             GL.Viewport(0, 0, e.Width, e.Height);
-            _projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(90.0f), (float)e.Width / (float)e.Height, 0.1f, 1024);
+            _projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(90.0f), (float)e.Width / (float)e.Height, 0.1f, 2048);
             base.OnResize(e);
         }
         #endregion
         #region UnloadWindow
         protected override void OnUnload()
-        {
+        {/*
             foreach (GameObject obj in ObjectManager.GetAllObjects())
             {
                 obj.DestroyObject();
-            }
+            }*/
             base.OnUnload();
         }
         #endregion

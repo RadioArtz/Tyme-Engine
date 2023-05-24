@@ -17,7 +17,7 @@ namespace Tyme_Engine
         private MouseState? Mouse;
         private KeyboardState? Keyboard;
         private EngineWindow _window;
-        Vector2 lastPos;
+        public Vector2 lastPos { get; private set; }
 
         public override void Update(float delta)
         {
@@ -32,14 +32,14 @@ namespace Tyme_Engine
             Mouse = _window.MouseState;
             Keyboard = _window.KeyboardState;
             ConsoleCommands();
-            var transcomp = parentObject._transformComponent;
-            var movespeed = delta*4;
-            var sensitivity = .1f;
+            Components.TransformComponent transcomp = parentObject._transformComponent;
+            float movespeed = delta*4;
+            float sensitivity = .1f;
 
             float deltaX = Mouse.X - lastPos.X;
             float deltaY = Mouse.Y - lastPos.Y;
             lastPos = new Vector2(Mouse.X, Mouse.Y);
-            Rendering.RenderInterface._hardcorelamp!._radius = _window.MouseState.Scroll.Y;
+            Rendering.RenderInterface._hardcorelamp!._radius = _window.MouseState.Scroll.Y*8;
             if (!Mouse.IsButtonDown(MouseButton.Right))
             {
                 _window.SetCursorGrabbed(CursorState.Normal);
@@ -52,7 +52,7 @@ namespace Tyme_Engine
 
             if (Keyboard.IsKeyDown(Keys.LeftShift))
             {
-                movespeed = delta * 25;
+                movespeed = delta * 96;
             }
             if (Keyboard.IsKeyDown(Keys.D))
             {
@@ -82,6 +82,11 @@ namespace Tyme_Engine
 
         private void ConsoleCommands()
         {
+            if(Keyboard.IsKeyDown(Keys.LeftControl) && Keyboard.IsKeyDown(Keys.Q)|| Keyboard.IsKeyDown(Keys.Escape))
+            {
+                Environment.Exit(0);
+            }
+
             if (Keyboard.IsKeyPressed(Keys.F1))
             {
                 if (AssetManager.assets.Count == 0)
@@ -129,6 +134,14 @@ namespace Tyme_Engine
                         if (comp.GetType() == typeof(Components.StaticMeshComponent))
                             Debug.Log("Texture on static mesh with path " + obj._staticMeshComponent.texture1.m_path, ConsoleColor.DarkYellow);
                     }
+                }
+            }
+            if (Keyboard.IsKeyPressed(Keys.Z))
+            {
+                foreach (GameObject obj in ObjectManager.GetAllObjects())
+                {
+                    if (obj._staticMeshComponent != null)
+                        obj.DestroyObject();
                 }
             }
         }

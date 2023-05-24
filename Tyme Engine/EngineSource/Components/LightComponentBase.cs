@@ -10,7 +10,8 @@ namespace Tyme_Engine.Components
 {
     class LightComponentBase : Component
     {
-        public Vector4 _lightColor; //RGB for color, Alpha stores Brightness
+        public Vector4 _lightColor = new Vector4(0,0,1,1); //RGB for color, Alpha stores Brightness
+        
         public float _radius;
     }
 }

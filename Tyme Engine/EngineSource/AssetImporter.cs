@@ -19,13 +19,14 @@ namespace Tyme_Engine.IO
         {
             Core.Debug.Log("Loading Mesh from " + path, ConsoleColor.Black, ConsoleColor.Gray);
             var assimpContext = new AssimpContext();
-            var assimpScene = assimpContext.ImportFile(path,PostProcessSteps.GenerateNormals | PostProcessSteps.GenerateUVCoords | PostProcessSteps.Triangulate | PostProcessSteps.FindInvalidData | PostProcessSteps.OptimizeMeshes | PostProcessSteps.ImproveCacheLocality | PostProcessSteps.JoinIdenticalVertices);
+            var assimpScene = assimpContext.ImportFile(path,PostProcessSteps.GenerateNormals | PostProcessSteps.GenerateUVCoords | PostProcessSteps.Triangulate | PostProcessSteps.FindInvalidData | PostProcessSteps.OptimizeMeshes | PostProcessSteps.ImproveCacheLocality | PostProcessSteps.JoinIdenticalVertices | PostProcessSteps.PreTransformVertices);
             int test = AssetManager.RegisterAsset(assimpScene, assimpScene.RootNode.Name, AssetManager.AssetType.Mesh);
             return test;
         }
 
         public static float[] ConvertVertecies(Mesh inAssimpMesh,bool b_IncludeTexCoords, bool b_IncludeNormals, int uvChannel)
         {
+            Core.Debug.Log("Converting Vertecies", ConsoleColor.DarkYellow);
             int index = 0;
             var tmplist = new List<float>();
             foreach(Vector3D v3d in inAssimpMesh.Vertices)
@@ -52,6 +53,7 @@ namespace Tyme_Engine.IO
 
         public static float[] ConvertUVCoords(Mesh inAssimpMesh, int uvChannel)
         {
+            Core.Debug.Log("Converting UVs", ConsoleColor.DarkYellow);
             var tmplist = new List<float>();
             foreach(Assimp.Vector3D v3d in inAssimpMesh.TextureCoordinateChannels[uvChannel])
             {
@@ -63,6 +65,7 @@ namespace Tyme_Engine.IO
 
         public static int[] ConvertIndecies(Mesh inAssimpMesh)
         {
+            Core.Debug.Log("Converting Indecies", ConsoleColor.DarkYellow);
             var tmplist = new List<int>();
             foreach (Face face in inAssimpMesh.Faces)
             {

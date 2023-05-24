@@ -10,13 +10,38 @@ namespace Tyme_Engine.Components
     public class TransformComponent : Component
     {
         public Transform transform;
-
+        public EMobilityType mobilityType = EMobilityType.EMovable;
+        Matrix4 ModelMatrixCache;
         public TransformComponent()
         {
             transform.Scale = new Vector3(1, 1, 1);
+            if (!Program.inEditor && mobilityType == EMobilityType.EStatic)
+            {
+                GetModelMatrix(true);
+                Debug.Log("Creating static model matrix...", ConsoleColor.DarkCyan);
+            }
         }
-        public Matrix4 GetModelMatrix()
+        public TransformComponent(Transform initTransform)
         {
+            transform = initTransform;
+            if (!Program.inEditor && mobilityType == EMobilityType.EStatic)
+            {
+                GetModelMatrix(true);
+                Debug.Log("Creating static model matrix...", ConsoleColor.DarkCyan);
+            }
+        }
+        public Matrix4 GetModelMatrix(bool overrideStatic = false)
+        {
+            if (!Program.inEditor && mobilityType == EMobilityType.EStatic && !overrideStatic)
+            {/*
+                if (ModelMatrixCache == null)
+                {
+                    GetModelMatrix(true);
+                    Debug.Log("Creating static model matrix...", ConsoleColor.DarkCyan);
+                } */
+                return ModelMatrixCache;
+            }
+
             Matrix4 model;
             model = Matrix4.Identity;
             var xRot = Matrix4.CreateRotationX(MathHelper.DegreesToRadians(transform.Rotation.X));
@@ -28,9 +53,15 @@ namespace Tyme_Engine.Components
             model *= zRot;
             model *= Matrix4.CreateScale(transform.Scale);
             model *= Matrix4.CreateTranslation(transform.Location);
-
+            ModelMatrixCache = model;
+            
             return model;
         }
         
+    }
+    public enum EMobilityType
+    {
+        EStatic,
+        EMovable
     }
 }

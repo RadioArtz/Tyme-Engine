@@ -24,8 +24,11 @@ namespace Tyme_Engine
         }
         public override void PreRender(float delta)
         {
+            if (this.IsPendingKill)
+                return;
             this.parentObject._transformComponent.transform.Location = new Vector3(0, (float)Math.Sin(_timer.ElapsedMilliseconds/256f)*16f+64f, 0);
             this.parentObject._transformComponent.transform.Scale = new Vector3(1, 1, 1);
+            //this.parentObject._transformComponent.transform.Location = new Vector3(0, 30, 0);
         }
     }
 }

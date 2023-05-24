@@ -16,12 +16,12 @@ namespace Tyme_Engine.Core
         {
 
         }
-
+        
         public virtual void OnComponentDestroyed()
         {
-
+           
         }
-
+            
         public GameObject GetParent()
         {
             return parentObject;

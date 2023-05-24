@@ -8,7 +8,7 @@ namespace Tyme_Engine.Core
     public class GameObject : TObject
     {
         public string objectName;
-
+        
         public List<Component> childComponents { get; private set; } = new List<Component>();
         public StaticMeshComponent _staticMeshComponent { get; private set; }
         public TransformComponent _transformComponent { get; private set; }
@@ -40,26 +40,27 @@ namespace Tyme_Engine.Core
 
         public void RemoveComponent(Component componentToRemove)
         {
-            componentToRemove.OnComponentDestroyed();
+            componentToRemove.OnKill();
             childComponents.Remove(componentToRemove);
             //componentToRemove = null;
         }
 
         public void RemoveComponent(int indexToRemove)
         {
-            childComponents[indexToRemove].OnComponentDestroyed();
+            childComponents[indexToRemove].OnKill();
             childComponents.RemoveAt(indexToRemove);
         }
 
         public void DestroyObject()
         {
-            _staticMeshComponent?.OnComponentDestroyed();
-            ObjectManager.DestroyObject(this);
+            MarkPendingKill();
         }
 
         public List<Component> GetComponents()
         {
             return childComponents;
         }
+
     }
+        
 }

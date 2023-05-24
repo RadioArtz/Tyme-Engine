@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using Tyme_Engine.Core;
 using System;
- 
+using SharpHash.Base;
+using SharpHash.Interfaces;
+
+
 namespace Tyme_Engine
 {
     public static class AssetManager
@@ -13,7 +16,7 @@ namespace Tyme_Engine
         }
         public struct Asset
         {
-            public string Name;
+            public string Name; // :D
             public object Asset_data;
             public Int32 Hash;
             public AssetType Type;
@@ -37,6 +40,7 @@ namespace Tyme_Engine
         public static int RegisterAsset(object Asset, string AssetName, AssetType type)
         {
             int AssetHash = Asset.GetHashCode();
+            //int AssetHash
             assets.Add(new Asset(AssetName, Asset, AssetHash, type));
             return assets.Count - 1;
         }
