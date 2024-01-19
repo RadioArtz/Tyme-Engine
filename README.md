@@ -5,3 +5,6 @@ After Cloning, open the solution file, right click on the solution and hit resto
 
 Video demonstration:
 [https://youtu.be/rxO5J_5MoaA](https://youtu.be/rxO5J_5MoaA)
+
+Download:
+[https://github.com/RadioArtz/Tyme-Engine/releases/](https://github.com/RadioArtz/Tyme-Engine/releases/)
